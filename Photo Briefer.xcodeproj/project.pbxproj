@@ -77,7 +77,7 @@
 			remoteGlobalIDString = 6AAAF1211BC022A100EFC8E6;
 			remoteInfo = FlickrKitOSX;
 		};
-		4DFF59681E5646D50064B2C2 /* PBXContainerItemProxy */ = {
+		4DDD47A11E5CDE4C005FA6E2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4DC544551E56453900F7C8A8 /* FlickrKit.xcodeproj */;
 			proxyType = 1;
@@ -251,7 +251,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				4DFF59691E5646D50064B2C2 /* PBXTargetDependency */,
+				4DDD47A21E5CDE4C005FA6E2 /* PBXTargetDependency */,
 			);
 			name = "Photo Briefer";
 			productName = "Photo Briefer";
@@ -508,10 +508,10 @@
 			target = 4DC5441E1E56451000F7C8A8 /* Photo Briefer */;
 			targetProxy = 4DC544441E56451000F7C8A8 /* PBXContainerItemProxy */;
 		};
-		4DFF59691E5646D50064B2C2 /* PBXTargetDependency */ = {
+		4DDD47A21E5CDE4C005FA6E2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FlickrKit;
-			targetProxy = 4DFF59681E5646D50064B2C2 /* PBXContainerItemProxy */;
+			targetProxy = 4DDD47A11E5CDE4C005FA6E2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

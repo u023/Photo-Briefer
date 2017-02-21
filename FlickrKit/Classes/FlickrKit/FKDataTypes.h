@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 DevedUp Ltd. All rights reserved. http://www.devedup.com
 //
 
-
+#import <UIKit/UIKit.h>
 
 typedef void (^FKAPIImageUploadCompletion)(NSString * _Nullable imageID, NSError * _Nullable error);
 typedef void (^FKAPIRequestCompletion)(NSDictionary<NSString *, id> * _Nullable response,  NSError * _Nullable error);

@@ -15,9 +15,45 @@
 
 @implementation AppDelegate
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    NSString *scheme = [ url scheme];
+    
+    if ([@"photobriefer" isEqualToString:scheme]) {
+        //TODO: this is just demo purpose need to revisit authentication controller to handle this properly
+        // I don't recommend doing it like this, it's just a demo... I use an authentication
+        // controller singleton object in my projects
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserAuthCallbackNotification" object:url userInfo:nil];
+    }
+
+    return YES;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    // Initialise FlickrKit with your flickr api key and shared secret
+    NSString *apiKey = @"";
+    NSString *secret = @"";
+    
+    if (!apiKey) {
+        NSLog(@"\n------------\n");
+        exit(0);
+    }
+    
+    [[FlickrKit sharedFlickrKit] initializeWithAPIKey:apiKey sharedSecret:secret];
+    
+//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+//    // Override point for customization after application launch
+//    if ([[UIDevice currentDevice] userInterfaceIdiom == UIUserInterfaceIdiomPhone]) {
+//        
+//        self.viewController = [[FKViewController alloc] initWithNibName:@"FKViewController_iPhone" bundle:nil];
+//        self.navigationController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
+//        
+//    }
+//    self.window.rootViewController = self.navigationController;
+//    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
