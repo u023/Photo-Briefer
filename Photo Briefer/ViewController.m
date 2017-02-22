@@ -9,6 +9,7 @@
 #import "FlickrKit.h"
 
 #import "ViewController.h"
+#import "PBAuthViewController.h"
 
 @interface ViewController ()
 
@@ -47,12 +48,48 @@
     }];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    // Cancel any operations when you leave views
+    
+    self.navigationController.navigationBarHidden = NO;
+    
+    [self.todaysInterestingOp cancel];
+    [self.myPhotostreamOp cancel];
+    [self.completeAuthOp cancel];
+    [self.checkAuthOp cancel];
+    [self.uploadOp cancel];
+    [super viewWillDisappear:animated];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Auth
+
+- (void)userAuthenticationCallback:(NSNotification *)notification {
+    
+    //TODO: need to figure out why we want to call this...?
+    NSURL *callbackURL = notification.object;
+    
+    self.completeAuthOp = [[FlickrKit sharedFlickrKit] completeAuthWithURL:callbackURL completion:^(NSString * _Nullable userName, NSString * _Nullable userId, NSString * _Nullable fullName, NSError * _Nullable error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (!error) {
+                [self userLoggedIn:userName userID:userId];
+            } else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alert show];
+            }
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        });
+    }];
+}
 
 - (void)userLoggedIn:(NSString *)username userID:(NSString *)userID {
     self.userID = userID;
@@ -67,6 +104,13 @@
 
 
 - (IBAction)authButtonPressed:(id)sender {
+    if ([FlickrKit sharedFlickrKit].isAuthorized) {
+        [[FlickrKit sharedFlickrKit] logout];
+        [self userLoggedOut];
+    } else {
+        PBAuthViewController *authView = [[PBAuthViewController alloc] init];
+        [self.navigationController pushViewController:authView animated:YES];
+    }
 }
 
 - (IBAction)loadTodaysInterestingPressed:(id)sender {
