@@ -13,6 +13,10 @@
 
 @end
 
+    // Initialise FlickrKit with your flickr api key and shared secret
+NSString *apiKey = @"d084aca8b3bb201f9db2fe6ec0329b22";
+NSString *secret = @"7ea3d22026dc64e5";
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
@@ -32,8 +36,8 @@
     // Override point for customization after application launch.
     
     // Initialise FlickrKit with your flickr api key and shared secret
-    NSString *apiKey = @"";
-    NSString *secret = @"";
+//    NSString *apiKey = @"";
+//    NSString *secret = @"";
     
     if (!apiKey) {
         NSLog(@"\n------------\n");

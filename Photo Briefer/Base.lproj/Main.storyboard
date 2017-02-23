@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="FMf-nk-UNr">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="FMf-nk-UNr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -144,6 +144,7 @@
                         <outlet property="progressLabel" destination="4Lb-nt-iEB" id="Huh-fF-8yu"/>
                         <outlet property="searchText" destination="TNc-rk-0D6" id="5dQ-nv-EXw"/>
                         <outlet property="todaysInterestingLabel" destination="4Qd-iS-rRC" id="7Or-6F-e1M"/>
+                        <segue destination="bvZ-FC-oVd" kind="show" identifier="SegueToAuth" id="US7-jk-Nco"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -162,18 +163,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rwV-Zc-28P">
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rwV-Zc-28P">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rwV-Zc-28P" firstAttribute="leading" secondItem="Noc-SB-h8X" secondAttribute="leading" id="IJ7-Cx-mNc"/>
+                            <constraint firstAttribute="trailing" secondItem="rwV-Zc-28P" secondAttribute="trailing" id="KFT-lE-tK0"/>
+                            <constraint firstItem="EFN-0B-2go" firstAttribute="top" secondItem="rwV-Zc-28P" secondAttribute="bottom" id="PgV-rF-Oqe"/>
+                            <constraint firstItem="rwV-Zc-28P" firstAttribute="top" secondItem="Noc-SB-h8X" secondAttribute="top" id="f8r-k6-LU6"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="webView" destination="rwV-Zc-28P" id="4mI-sG-AJU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tqI-kV-zbT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="-561.76911544227892"/>
+            <point key="canvasLocation" x="1020" y="-382"/>
         </scene>
     </scenes>
 </document>

@@ -6,6 +6,7 @@
 //  Copyright © 2017 u023. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import "FlickrKit.h"
 
 #import "ViewController.h"
@@ -33,7 +34,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userAuthenticateCallback:) name:@"UserAuthCallbackNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userAuthenticationCallback:) name:@"UserAuthCallbackNotification" object:nil];
     
     // Check if there is a stored token
     // You should do this once on app launch
@@ -83,8 +84,16 @@
             if (!error) {
                 [self userLoggedIn:userName userID:userId];
             } else {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                [alert show];
+//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//                [alert show];
+                
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                    [alert dismissViewControllerAnimated:YES completion:nil];
+                }];
+                [alert addAction:cancel];
+                [self presentViewController:alert animated:YES completion:nil];
+
             }
             [self.navigationController popToRootViewControllerAnimated:YES];
         });
@@ -108,8 +117,10 @@
         [[FlickrKit sharedFlickrKit] logout];
         [self userLoggedOut];
     } else {
-        PBAuthViewController *authView = [[PBAuthViewController alloc] init];
-        [self.navigationController pushViewController:authView animated:YES];
+//        PBAuthViewController *authView = [[PBAuthViewController alloc] init];
+//        [self.navigationController pushViewController:authView animated:YES];
+        
+         [self performSegueWithIdentifier:@"SegueToAuth" sender:self];
     }
 }
 
