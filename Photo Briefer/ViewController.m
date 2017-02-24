@@ -131,12 +131,71 @@
 }
 
 - (IBAction)choosePhotoPressed:(id)sender {
+    if ([FlickrKit sharedFlickrKit].isAuthorized) {
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:imagePicker animated:YES completion:nil];
+    } else {
+        NSString *msg = @"Please login first";
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:msg preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [alert addAction:cancel];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 - (IBAction)searchErrorPressed:(id)sender {
 }
 
 - (IBAction)searchPressed:(id)sender {
+}
+
+#pragma mark - Progress KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        CGFloat progress = [[change objectForKey:NSKeyValueChangeNewKey] floatValue];
+        self.progress.progress = progress;
+        //[super observeValueForKeyPath:keyPath, ofObject:object change:change context:context];
+    });
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(nonnull NSDictionary<NSString *,id> *)info {
+    NSURL* imageURL = [info objectForKey:UIImagePickerControllerReferenceURL];
+    
+    NSDictionary *uploadgArgs = @{@"title": @"Test Photo", @"description": @"A Test Photo via FlickrKitDemo", @"is_public": @"0", @"is_friend": @"0", @"hidden": @"2"};
+    
+    self.progress.progress = 0.0;
+    self.uploadOp = [[FlickrKit sharedFlickrKit] uploadAssetURL:imageURL args:uploadgArgs completion:^(NSString * _Nullable imageID, NSError * _Nullable error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                    [alert dismissViewControllerAnimated:YES completion:nil];
+                }];
+                [alert addAction:cancel];
+                [self presentViewController:alert animated:YES completion:nil];
+                
+            } else {
+                NSString *msg = [NSString stringWithFormat:@"Uploaded image ID %@", imageID];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Done" message:msg preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                    [alert dismissViewControllerAnimated:YES completion:nil];
+                }];
+                [alert addAction:cancel];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+            [self.uploadOp removeObserver:self forKeyPath:@"uploadProgress" context:NULL];
+        });
+    }];
+    
+    [self.uploadOp addObserver:self forKeyPath:@"uploadProgress" options:NSKeyValueObservingOptionNew context:NULL];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

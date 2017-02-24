@@ -139,6 +139,7 @@
                     <connections>
                         <outlet property="authButton" destination="Dpt-lp-BA0" id="lae-4M-dGK"/>
                         <outlet property="authLabel" destination="GEC-nV-c82" id="I6e-By-YIC"/>
+                        <outlet property="choosePhotoButton" destination="itS-uE-kQk" id="hp1-DF-5Xw"/>
                         <outlet property="photostreamButton" destination="9Gt-a5-yDu" id="JPV-NR-qWa"/>
                         <outlet property="progress" destination="sIc-84-L0N" id="gLa-zP-IKZ"/>
                         <outlet property="progressLabel" destination="4Lb-nt-iEB" id="Huh-fF-8yu"/>

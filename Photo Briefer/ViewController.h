@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIProgressView *progress;
 @property (weak, nonatomic) IBOutlet UILabel *progressLabel;
 @property (weak, nonatomic) IBOutlet UITextField *searchText;
+@property (weak, nonatomic) IBOutlet UIButton *choosePhotoButton;
 
 - (IBAction)authButtonPressed:(id)sender;
 - (IBAction)loadTodaysInterestingPressed:(id)sender;
