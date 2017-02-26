@@ -11,6 +11,7 @@
 
 #import "ViewController.h"
 #import "PBAuthViewController.h"
+#import "PBPhotosViewController.h"
 
 @interface ViewController ()
 
@@ -25,12 +26,14 @@
 
 @implementation ViewController
 
-- (void) dealloc {
+- (void) dealloc
+{
     [self.todaysInterestingOp cancel];
     [self.myPhotostreamOp cancel];
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
@@ -49,12 +52,14 @@
     }];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated
+{
     // Cancel any operations when you leave views
     
     self.navigationController.navigationBarHidden = NO;
@@ -67,14 +72,16 @@
     [super viewWillDisappear:animated];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Auth
 
-- (void)userAuthenticationCallback:(NSNotification *)notification {
+- (void)userAuthenticationCallback:(NSNotification *)notification
+{
     
     //TODO: need to figure out why we want to call this...?
     NSURL *callbackURL = notification.object;
@@ -100,19 +107,22 @@
     }];
 }
 
-- (void)userLoggedIn:(NSString *)username userID:(NSString *)userID {
+- (void)userLoggedIn:(NSString *)username userID:(NSString *)userID
+{
     self.userID = userID;
     [self.authButton setTitle:@"Logout" forState:UIControlStateNormal];
     self.authLabel.text = [NSString stringWithFormat:@"You are logged in as %@", username];
 }
 
-- (void)userLoggedOut {
+- (void)userLoggedOut
+{
     [self.authButton setTitle:@"Login" forState:UIControlStateNormal];
     self.authLabel.text = @"Login to flickr";
 }
 
 
-- (IBAction)authButtonPressed:(id)sender {
+- (IBAction)authButtonPressed:(id)sender
+{
     if ([FlickrKit sharedFlickrKit].isAuthorized) {
         [[FlickrKit sharedFlickrKit] logout];
         [self userLoggedOut];
@@ -124,13 +134,59 @@
     }
 }
 
-- (IBAction)loadTodaysInterestingPressed:(id)sender {
+- (IBAction)loadTodaysInterestingPressed:(id)sender
+{
+    /* 
+     Example using the modell objects
+     */
+    
+    FKFlickrInterestingnessGetList *interesting = [[FKFlickrInterestingnessGetList alloc] init];
+    interesting.per_page = @"15";
+    self.todaysInterestingOp = [[FlickrKit sharedFlickrKit] call:interesting completion:^(NSDictionary<NSString *,id> * _Nullable response, NSError * _Nullable error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (response) {
+                NSMutableArray *photoURLs = [NSMutableArray array];
+                for (NSDictionary *photoDictionary in [response valueForKeyPath:@"photos.photo"]) {
+                    NSURL *url = [[FlickrKit sharedFlickrKit] photoURLForSize:FKPhotoSizeSmall240 fromPhotoDictionary:photoDictionary];
+                    [photoURLs addObject:url];
+                }
+                
+                //TODO add PBPhotosViewController to display these photo here.
+//                PBPhotosViewController *photosView = [[PBPhotosViewController alloc] init];
+//                [self.navigationController pushViewController:photosView animated:YES];
+                
+                [self performSegueWithIdentifier:@"SegueToPhotos" sender:self];
+                
+                
+            } else {
+                //Error handling
+                switch (error.code) {
+                    case FKFlickrInterestingnessGetListError_ServiceCurrentlyUnavailable:
+                        
+                        break;
+                        
+                    default:
+                        break;
+                }
+                
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                    [alert dismissViewControllerAnimated:YES completion:nil];
+                }];
+                [alert addAction:cancel];
+                [self presentViewController:alert animated:YES completion:nil];
+                
+            }
+        });
+    }];
 }
 
-- (IBAction)photostreamButtonPressed:(id)sender {
+- (IBAction)photostreamButtonPressed:(id)sender
+{
 }
 
-- (IBAction)choosePhotoPressed:(id)sender {
+- (IBAction)choosePhotoPressed:(id)sender
+{
     if ([FlickrKit sharedFlickrKit].isAuthorized) {
         UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
         imagePicker.delegate = self;
@@ -147,15 +203,18 @@
     }
 }
 
-- (IBAction)searchErrorPressed:(id)sender {
+- (IBAction)searchErrorPressed:(id)sender
+{
 }
 
-- (IBAction)searchPressed:(id)sender {
+- (IBAction)searchPressed:(id)sender
+{
 }
 
 #pragma mark - Progress KVO
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
     dispatch_async(dispatch_get_main_queue(), ^{
         CGFloat progress = [[change objectForKey:NSKeyValueChangeNewKey] floatValue];
         self.progress.progress = progress;
@@ -165,13 +224,14 @@
 
 #pragma mark - UIImagePickerControllerDelegate
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(nonnull NSDictionary<NSString *,id> *)info {
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(nonnull NSDictionary<NSString *,id> *)info
+{
     NSURL* imageURL = [info objectForKey:UIImagePickerControllerReferenceURL];
     
-    NSDictionary *uploadgArgs = @{@"title": @"Test Photo", @"description": @"A Test Photo via FlickrKitDemo", @"is_public": @"0", @"is_friend": @"0", @"hidden": @"2"};
+    NSDictionary *uploadArgs = @{@"title": @"Test Photo", @"description": @"A Test Photo via FlickrKitDemo", @"is_public": @"0", @"is_friend": @"0", @"is_family": @"0", @"hidden": @"2"};
     
     self.progress.progress = 0.0;
-    self.uploadOp = [[FlickrKit sharedFlickrKit] uploadAssetURL:imageURL args:uploadgArgs completion:^(NSString * _Nullable imageID, NSError * _Nullable error) {
+    self.uploadOp = [[FlickrKit sharedFlickrKit] uploadAssetURL:imageURL args:uploadArgs completion:^(NSString * _Nullable imageID, NSError * _Nullable error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error) {
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
