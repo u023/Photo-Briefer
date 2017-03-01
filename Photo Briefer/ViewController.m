@@ -152,12 +152,10 @@
                 }
                 
                 //TODO add PBPhotosViewController to display these photo here.
-//                PBPhotosViewController *photosView = [[PBPhotosViewController alloc] init];
-//                [self.navigationController pushViewController:photosView animated:YES];
+                PBPhotosViewController *photosView = [[PBPhotosViewController alloc] initWithURLArray:photoURLs];
+                [self.navigationController pushViewController:photosView animated:YES];
                 
-                [self performSegueWithIdentifier:@"SegueToPhotos" sender:self];
-                
-                
+                //[self performSegueWithIdentifier:@"SegueToPhotos" sender:self];
             } else {
                 //Error handling
                 switch (error.code) {

@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Pods/FlickrKit/Classes/Network/FKImageUploadNetworkOperation.m"
-            timestampString = "509816016.356724"
+            filePath = "Photo Briefer/PBPhotosViewController.m"
+            timestampString = "510019277.676285"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "-initWithAssetURL:arguments:completion:"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "-addImageToView:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

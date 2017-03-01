@@ -165,12 +165,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XmO-d7-At6">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XmO-d7-At6">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LgN-1G-j20" firstAttribute="top" secondItem="XmO-d7-At6" secondAttribute="bottom" id="2Jw-Iy-bPo"/>
+                            <constraint firstItem="XmO-d7-At6" firstAttribute="top" secondItem="IXt-ru-p5s" secondAttribute="top" constant="20" id="GdN-U2-uig"/>
+                            <constraint firstItem="XmO-d7-At6" firstAttribute="leading" secondItem="IXt-ru-p5s" secondAttribute="leading" id="SNc-DR-knS"/>
+                            <constraint firstAttribute="trailing" secondItem="XmO-d7-At6" secondAttribute="trailing" id="s3p-uT-3n3"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="imageScrollView" destination="XmO-d7-At6" id="Qdg-CQ-rrD"/>
