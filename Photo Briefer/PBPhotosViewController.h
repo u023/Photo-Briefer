@@ -13,5 +13,5 @@
 - (id)initWithURLArray:(NSArray *)urlArray;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *imageScrollView;
-
+@property (nonatomic, retain) NSArray *photoURLs;
 @end

@@ -9,10 +9,11 @@
 #import "PBPhotosViewController.h"
 
 @interface PBPhotosViewController ()
-@property (nonatomic, retain) NSArray *photoURLs;
+
 @end
 
 @implementation PBPhotosViewController
+@synthesize photoURLs = _photoURLs;
 
 - (id)initWithURLArray:(NSArray *)urlArray
 {
@@ -65,7 +66,6 @@
     [self.imageScrollView addSubview:imageView];
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -73,6 +73,5 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
 
 @end

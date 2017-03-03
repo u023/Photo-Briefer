@@ -17,6 +17,7 @@
 		4DC544321E56451000F7C8A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DC544301E56451000F7C8A8 /* LaunchScreen.storyboard */; };
 		4DC5443D1E56451000F7C8A8 /* Photo_BrieferTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC5443C1E56451000F7C8A8 /* Photo_BrieferTests.m */; };
 		4DC544481E56451000F7C8A8 /* Photo_BrieferUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC544471E56451000F7C8A8 /* Photo_BrieferUITests.m */; };
+		4DE575241E672F9B00B9AA29 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE575231E672F9B00B9AA29 /* TestViewController.m */; };
 		4DFF59701E5646E10064B2C2 /* libFlickrKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DC5445F1E56453900F7C8A8 /* libFlickrKit.a */; };
 		4DFF59721E5647B10064B2C2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DFF59711E5647B10064B2C2 /* SystemConfiguration.framework */; };
 		94DE843AB80F9B88EB694220 /* Pods_Photo_Briefer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D576B32677A5DC2F4E2E42 /* Pods_Photo_Briefer.framework */; };
@@ -111,6 +112,8 @@
 		4DC544471E56451000F7C8A8 /* Photo_BrieferUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Photo_BrieferUITests.m; sourceTree = "<group>"; };
 		4DC544491E56451000F7C8A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DC544551E56453900F7C8A8 /* FlickrKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FlickrKit.xcodeproj; path = FlickrKit/FlickrKit.xcodeproj; sourceTree = "<group>"; };
+		4DE575221E672F9B00B9AA29 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		4DE575231E672F9B00B9AA29 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		4DFF59711E5647B10064B2C2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		855140D656482EC2F46FA7A3 /* Pods-Photo Briefer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Photo Briefer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Photo Briefer/Pods-Photo Briefer.release.xcconfig"; sourceTree = "<group>"; };
 		94057968F33C7B60717A0F50 /* Pods-Photo Briefer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Photo Briefer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Photo Briefer/Pods-Photo Briefer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -183,6 +186,8 @@
 				4DC544301E56451000F7C8A8 /* LaunchScreen.storyboard */,
 				4DC544331E56451000F7C8A8 /* Info.plist */,
 				4DC544221E56451000F7C8A8 /* Supporting Files */,
+				4DE575221E672F9B00B9AA29 /* TestViewController.h */,
+				4DE575231E672F9B00B9AA29 /* TestViewController.m */,
 			);
 			path = "Photo Briefer";
 			sourceTree = "<group>";
@@ -483,6 +488,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DE575241E672F9B00B9AA29 /* TestViewController.m in Sources */,
 				4D27203A1E5E31F300331684 /* PBAuthViewController.m in Sources */,
 				4DC5442A1E56451000F7C8A8 /* ViewController.m in Sources */,
 				4DC544271E56451000F7C8A8 /* AppDelegate.m in Sources */,

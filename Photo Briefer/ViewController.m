@@ -21,10 +21,13 @@
 @property (nonatomic, retain) FKDUNetworkOperation *checkAuthOp;
 @property (nonatomic, retain) FKImageUploadNetworkOperation *uploadOp;
 @property (nonatomic, retain) NSString *userID;
+@property (nonatomic, retain) NSMutableArray *photoURLs;
 
 @end
 
 @implementation ViewController
+
+@synthesize photoURLs = _photoURLs;
 
 - (void) dealloc
 {
@@ -145,17 +148,18 @@
     self.todaysInterestingOp = [[FlickrKit sharedFlickrKit] call:interesting completion:^(NSDictionary<NSString *,id> * _Nullable response, NSError * _Nullable error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (response) {
-                NSMutableArray *photoURLs = [NSMutableArray array];
+                _photoURLs = [NSMutableArray array];
                 for (NSDictionary *photoDictionary in [response valueForKeyPath:@"photos.photo"]) {
                     NSURL *url = [[FlickrKit sharedFlickrKit] photoURLForSize:FKPhotoSizeSmall240 fromPhotoDictionary:photoDictionary];
-                    [photoURLs addObject:url];
+                    [_photoURLs addObject:url];
                 }
                 
                 //TODO add PBPhotosViewController to display these photo here.
-                PBPhotosViewController *photosView = [[PBPhotosViewController alloc] initWithURLArray:photoURLs];
-                [self.navigationController pushViewController:photosView animated:YES];
+                // When I do this route, I can't get the imageScrollView working somehow :(
+//                PBPhotosViewController *photosView = [[PBPhotosViewController alloc] initWithURLArray:photoURLs];
+//                [self.navigationController pushViewController:photosView animated:YES];
+                [self performSegueWithIdentifier:@"SegueToPhotos" sender:self];
                 
-                //[self performSegueWithIdentifier:@"SegueToPhotos" sender:self];
             } else {
                 //Error handling
                 switch (error.code) {
@@ -255,5 +259,19 @@
     [self.uploadOp addObserver:self forKeyPath:@"uploadProgress" options:NSKeyValueObservingOptionNew context:NULL];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqualToString:@"SegueToPhotos"]) {
+        PBPhotosViewController *photosView = [segue destinationViewController];
+        photosView.photoURLs = _photoURLs;
+    }
+}
+
 
 @end
