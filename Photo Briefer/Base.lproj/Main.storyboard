@@ -147,11 +147,44 @@
                         <outlet property="todaysInterestingLabel" destination="4Qd-iS-rRC" id="7Or-6F-e1M"/>
                         <segue destination="bvZ-FC-oVd" kind="show" identifier="SegueToAuth" id="US7-jk-Nco"/>
                         <segue destination="mO0-Gr-stK" kind="show" identifier="SegueToPhotos" id="2HO-Qa-p5P"/>
+                        <segue destination="V9s-ab-gKl" kind="show" identifier="SegueToMyPhotos" id="pBu-ye-NhY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="140" y="138.98050974512745"/>
+        </scene>
+        <!--My Photos View Controller-->
+        <scene sceneID="ge1-Lf-sgS">
+            <objects>
+                <viewController id="V9s-ab-gKl" customClass="MyPhotosViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8Pw-g9-dGf"/>
+                        <viewControllerLayoutGuide type="bottom" id="3W4-GR-OlQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NyS-Kk-3wG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kel-f3-c1K">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="kel-f3-c1K" secondAttribute="trailing" id="GIZ-0i-jZy"/>
+                            <constraint firstItem="kel-f3-c1K" firstAttribute="top" secondItem="NyS-Kk-3wG" secondAttribute="top" id="eFN-xT-5bC"/>
+                            <constraint firstItem="3W4-GR-OlQ" firstAttribute="top" secondItem="kel-f3-c1K" secondAttribute="bottom" id="fZW-3n-xtw"/>
+                            <constraint firstItem="kel-f3-c1K" firstAttribute="leading" secondItem="NyS-Kk-3wG" secondAttribute="leading" id="wY6-d5-EPA"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageScrollView" destination="kel-f3-c1K" id="TgY-q7-HEh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DeC-Hi-HTM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140" y="944"/>
         </scene>
         <!--Photos View Controller-->
         <scene sceneID="7gP-zr-nuY">
@@ -166,13 +199,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XmO-d7-At6" userLabel="Image Scroll View">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="LgN-1G-j20" firstAttribute="top" secondItem="XmO-d7-At6" secondAttribute="bottom" id="2Jw-Iy-bPo"/>
-                            <constraint firstItem="XmO-d7-At6" firstAttribute="top" secondItem="IXt-ru-p5s" secondAttribute="top" constant="20" id="GdN-U2-uig"/>
+                            <constraint firstItem="XmO-d7-At6" firstAttribute="top" secondItem="IXt-ru-p5s" secondAttribute="top" id="4YY-36-4OI"/>
                             <constraint firstItem="XmO-d7-At6" firstAttribute="leading" secondItem="IXt-ru-p5s" secondAttribute="leading" id="SNc-DR-knS"/>
                             <constraint firstAttribute="trailing" secondItem="XmO-d7-At6" secondAttribute="trailing" id="s3p-uT-3n3"/>
                         </constraints>

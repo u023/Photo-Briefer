@@ -12,6 +12,7 @@
 #import "ViewController.h"
 #import "PBAuthViewController.h"
 #import "PBPhotosViewController.h"
+#import "MyPhotosViewController.h"
 
 @interface ViewController ()
 
@@ -22,12 +23,13 @@
 @property (nonatomic, retain) FKImageUploadNetworkOperation *uploadOp;
 @property (nonatomic, retain) NSString *userID;
 @property (nonatomic, retain) NSMutableArray *photoURLs;
+@property (nonatomic, retain) NSMutableArray *myPhotoURLs;
 
 @end
 
 @implementation ViewController
-
 @synthesize photoURLs = _photoURLs;
+@synthesize myPhotoURLs = _myPhotoURLs;
 
 - (void) dealloc
 {
@@ -185,6 +187,33 @@
 
 - (IBAction)photostreamButtonPressed:(id)sender
 {
+    if ([FlickrKit sharedFlickrKit].isAuthorized) {
+        
+        //NSDictionary *args = @{ @"user_id": self.userID, @"per_page": @"15" };
+        
+        self.myPhotostreamOp = [[FlickrKit sharedFlickrKit] call:@"flickr.photos.search" args:@{@"user_id": self.userID, @"per_page": @"15"} maxCacheAge:FKDUMaxAgeNeverCache completion:^(NSDictionary<NSString *,id> * _Nullable response, NSError * _Nullable error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (response) {
+                    _myPhotoURLs = [NSMutableArray array];
+                    
+                    for (NSDictionary *photoDictionary in [response valueForKeyPath:@"photos.photo"]) {
+                        NSURL *url = [[FlickrKit sharedFlickrKit] photoURLForSize:FKPhotoSizeSmall240 fromPhotoDictionary:photoDictionary];
+                        [_myPhotoURLs addObject:url];
+                    }
+                    
+//                    PBPhotosViewController *photosView = [[PBPhotosViewController alloc] initWithURLArray:_myPhotoURLs];
+//                    [self.navigationController pushViewController:photosView animated:YES];
+                    // segue to
+                    [self performSegueWithIdentifier:@"SegueToMyPhotos" sender:self];
+                    
+                } else {
+                    [self showErrorAlertWithMessage:error];
+                }
+            });
+        }];
+    } else {
+        [self showLoginError];
+    }
 }
 
 - (IBAction)choosePhotoPressed:(id)sender
@@ -195,13 +224,14 @@
         imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentViewController:imagePicker animated:YES completion:nil];
     } else {
-        NSString *msg = @"Please login first";
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:msg preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            [alert dismissViewControllerAnimated:YES completion:nil];
-        }];
-        [alert addAction:cancel];
-        [self presentViewController:alert animated:YES completion:nil];
+//        NSString *msg = @"Please login first";
+//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:msg preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//            [alert dismissViewControllerAnimated:YES completion:nil];
+//        }];
+//        [alert addAction:cancel];
+//        [self presentViewController:alert animated:YES completion:nil];
+        [self showLoginError];
     }
 }
 
@@ -211,6 +241,29 @@
 
 - (IBAction)searchPressed:(id)sender
 {
+}
+
+#pragma mark - Error Message Dialog
+
+- (void)showErrorAlertWithMessage:(NSError *)error
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [alert addAction:cancel];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)showLoginError
+{
+    NSString *msg = @"Please login first";
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:msg preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [alert addAction:cancel];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - Progress KVO
@@ -270,6 +323,9 @@
     if ([segue.identifier isEqualToString:@"SegueToPhotos"]) {
         PBPhotosViewController *photosView = [segue destinationViewController];
         photosView.photoURLs = _photoURLs;
+    } else if ([segue.identifier isEqualToString:@"SegueToMyPhotos"]) {
+        MyPhotosViewController *myPhotosView = [segue destinationViewController];
+        myPhotosView.myPhotoURLs = _myPhotoURLs;
     }
 }
 
