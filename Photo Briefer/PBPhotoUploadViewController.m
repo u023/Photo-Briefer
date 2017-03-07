@@ -47,7 +47,42 @@
 
 - (IBAction)uploadImageButtonPressed:(id)sender
 {
+    if (self.uploadingImageView.image == nil) {
+        return;
+    }
     
+    NSDictionary *uploadArgs = @{@"title": @"Test Photo",
+                                 @"description": @"A Test Photo via FlickrKitDemo",
+                                 @"is_public": @"0",
+                                 @"is_friend": @"0",
+                                 @"is_family": @"0",
+                                 @"hidden": @"2"};
+    
+    self.progress.progress = 0.0;
+    
+    self.uploadOp = [[FlickrKit sharedFlickrKit] uploadImage:self.uploadingImageView.image args:uploadArgs completion:^(NSString * _Nullable imageID, NSError * _Nullable error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                    [alert dismissViewControllerAnimated:YES completion:nil];
+                }];
+                [alert addAction:cancel];
+                [self presentViewController:alert animated:YES completion:nil];
+            } else {
+                NSString *msg = [NSString stringWithFormat:@"Upload image ID %@", imageID];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Done" message:msg preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                    [alert dismissViewControllerAnimated:YES completion:nil];
+                }];
+                [alert addAction:cancel];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+            [self.uploadOp removeObserver:self forKeyPath:@"uploadProgress" context:NULL];
+        });
+    }];
+    
+    [self.uploadOp addObserver:self forKeyPath:@"uploadProgress" options:NSKeyValueObservingOptionNew context:NULL];
 }
 
 - (void)camera
@@ -109,38 +144,9 @@
 {
     DUImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     
-    NSDictionary *uploadArgs = @{@"title": @"Test Photo",
-                                 @"description": @"A Test Photo via FlickrKitDemo",
-                                 @"is_public": @"0",
-                                 @"is_friend": @"0",
-                                 @"is_family": @"0",
-                                 @"hidden": @"2"};
-    
-    self.progress.progress = 0.0;
-    
-    self.uploadOp = [[FlickrKit sharedFlickrKit] uploadImage:image args:uploadArgs completion:^(NSString * _Nullable imageID, NSError * _Nullable error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (error) {
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                    [alert dismissViewControllerAnimated:YES completion:nil];
-                }];
-                [alert addAction:cancel];
-                [self presentViewController:alert animated:YES completion:nil];
-            } else {
-                NSString *msg = [NSString stringWithFormat:@"Upload image ID %@", imageID];
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Done" message:msg preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                    [alert dismissViewControllerAnimated:YES completion:nil];
-                }];
-                [alert addAction:cancel];
-                [self presentViewController:alert animated:YES completion:nil];
-            }
-            [self.uploadOp removeObserver:self forKeyPath:@"uploadProgress" context:NULL];
-        });
-    }];
-    
-    [self.uploadOp addObserver:self forKeyPath:@"uploadProgress" options:NSKeyValueObservingOptionNew context:NULL];
+    if ([info objectForKey:UIImagePickerControllerOriginalImage] != nil) {
+        self.uploadingImageView.image = image;
+    }
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }

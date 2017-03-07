@@ -289,7 +289,7 @@
                                     <action selector="selectImageButtonPressed:" destination="ZFH-v2-Ufe" eventType="touchUpInside" id="Luw-5q-LMY"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mMc-cI-e8w" userLabel="Photo Image View">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mMc-cI-e8w" userLabel="Upload Photo Image View">
                                 <rect key="frame" x="16" y="20" width="343" height="385"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="mMc-cI-e8w" secondAttribute="height" multiplier="49:55" id="v8F-sm-VVO"/>
@@ -327,6 +327,7 @@
                         <outlet property="progress" destination="4KJ-Ax-Yoc" id="N6b-kU-yeF"/>
                         <outlet property="selectImageButton" destination="w1j-z8-BXK" id="SAm-er-Be0"/>
                         <outlet property="uploadImageButton" destination="xX2-t4-h9v" id="Fac-lo-kFm"/>
+                        <outlet property="uploadingImageView" destination="mMc-cI-e8w" id="gwg-SJ-2Ed"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IaE-41-P67" userLabel="First Responder" sceneMemberID="firstResponder"/>

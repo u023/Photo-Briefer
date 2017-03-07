@@ -10,5 +10,6 @@
 
 @interface PBPhotoUploadViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIProgressView *progress;
+@property (weak, nonatomic) IBOutlet UIImageView *uploadingImageView;
 
 @end
