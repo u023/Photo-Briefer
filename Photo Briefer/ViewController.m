@@ -241,6 +241,26 @@
 
 - (IBAction)searchPressed:(id)sender
 {
+    [self.view endEditing:YES];
+    
+    FKFlickrPhotosSearch *search = [[FKFlickrPhotosSearch alloc] init];
+    search.text = self.searchText.text;
+    search.per_page = @"15";
+    [[FlickrKit sharedFlickrKit] call:search completion:^(NSDictionary<NSString *,id> * _Nullable response, NSError * _Nullable error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (response) {
+                NSMutableArray *photoURLs = [NSMutableArray array];
+                for (NSDictionary *photoDict in [response valueForKeyPath:@"photos.photo"]) {
+                    NSURL *url = [[FlickrKit sharedFlickrKit] photoURLForSize:FKPhotoSizeSmall240 fromPhotoDictionary:photoDict];
+                    [photoURLs addObject:url];
+                }
+                
+                [self performSegueWithIdentifier:@"SegueToPhotos" sender:self];
+            } else {
+                [self showErrorAlertWithMessage:error];
+            }
+        });
+    }];
 }
 
 #pragma mark - Error Message Dialog
