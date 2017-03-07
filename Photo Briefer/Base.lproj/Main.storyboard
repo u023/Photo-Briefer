@@ -267,7 +267,7 @@
                                     <constraint firstAttribute="width" secondItem="xX2-t4-h9v" secondAttribute="height" multiplier="75:16" id="mv6-bZ-GPR"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
-                                <state key="normal" title="Upload Image">
+                                <state key="normal" title="Upload">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -295,6 +295,10 @@
                                     <constraint firstAttribute="width" secondItem="mMc-cI-e8w" secondAttribute="height" multiplier="49:55" id="v8F-sm-VVO"/>
                                 </constraints>
                             </imageView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="kiY-6s-ciT">
+                                <rect key="frame" x="0.0" y="601" width="375" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -320,7 +324,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IaE-41-P67" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1020" y="968"/>
+            <point key="canvasLocation" x="1020" y="967.4662668665668"/>
         </scene>
     </scenes>
 </document>
