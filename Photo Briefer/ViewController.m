@@ -13,6 +13,7 @@
 #import "PBAuthViewController.h"
 #import "PBPhotosViewController.h"
 #import "MyPhotosViewController.h"
+#import "PBPhotoUploadViewController.h"
 
 @interface ViewController ()
 
@@ -219,18 +220,17 @@
 - (IBAction)choosePhotoPressed:(id)sender
 {
     if ([FlickrKit sharedFlickrKit].isAuthorized) {
-        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-        imagePicker.delegate = self;
-        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        [self presentViewController:imagePicker animated:YES completion:nil];
+//        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+//        imagePicker.delegate = self;
+//        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//        [self presentViewController:imagePicker animated:YES completion:nil];
+        
+//        PBPhotoUploadViewController *uploadView = [[PBPhotoUploadViewController alloc] init];
+//        [self.navigationController pushViewController:uploadView animated:YES];
+        
+        [self performSegueWithIdentifier:@"SegueToUploadView" sender:self];
+        
     } else {
-//        NSString *msg = @"Please login first";
-//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:msg preferredStyle:UIAlertControllerStyleAlert];
-//        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-//            [alert dismissViewControllerAnimated:YES completion:nil];
-//        }];
-//        [alert addAction:cancel];
-//        [self presentViewController:alert animated:YES completion:nil];
         [self showLoginError];
     }
 }
@@ -346,6 +346,8 @@
     } else if ([segue.identifier isEqualToString:@"SegueToMyPhotos"]) {
         MyPhotosViewController *myPhotosView = [segue destinationViewController];
         myPhotosView.myPhotoURLs = _myPhotoURLs;
+    } else if ([segue.identifier isEqualToString:@"SegueToUploadView"]) {
+        //PBPhotoUploadViewController *uploadView = [segue destinationViewController];
     }
 }
 

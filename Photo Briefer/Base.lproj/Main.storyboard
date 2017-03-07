@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -75,13 +77,6 @@
                                     <action selector="loadTodaysInterestingPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GDO-ji-Nfw"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Upload Photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNI-2l-dT1">
-                                <rect key="frame" x="135" y="419" width="105" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="itS-uE-kQk">
                                 <rect key="frame" x="139" y="457" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -148,6 +143,7 @@
                         <segue destination="bvZ-FC-oVd" kind="show" identifier="SegueToAuth" id="US7-jk-Nco"/>
                         <segue destination="mO0-Gr-stK" kind="show" identifier="SegueToPhotos" id="2HO-Qa-p5P"/>
                         <segue destination="V9s-ab-gKl" kind="show" identifier="SegueToMyPhotos" id="pBu-ye-NhY"/>
+                        <segue destination="ZFH-v2-Ufe" kind="show" identifier="SegueToUploadView" id="sgD-kn-Awe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -184,7 +180,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DeC-Hi-HTM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="944"/>
+            <point key="canvasLocation" x="140" y="969"/>
         </scene>
         <!--Photos View Controller-->
         <scene sceneID="7gP-zr-nuY">
@@ -250,6 +246,81 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tqI-kV-zbT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1020" y="-382"/>
+        </scene>
+        <!--PB Photo Upload View Controller-->
+        <scene sceneID="cli-FK-aPa">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="ZFH-v2-Ufe" userLabel="PB Photo Upload View Controller" customClass="PBPhotoUploadViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fsP-X0-4vW"/>
+                        <viewControllerLayoutGuide type="bottom" id="eN2-1n-TLF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SCA-bv-4mk">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xX2-t4-h9v">
+                                <rect key="frame" x="0.0" y="515" width="375" height="80"/>
+                                <color key="backgroundColor" red="0.9980931878" green="0.75772172209999999" blue="0.032601628450000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="xX2-t4-h9v" secondAttribute="height" multiplier="75:16" id="Nfn-DB-mYg"/>
+                                    <constraint firstAttribute="width" secondItem="xX2-t4-h9v" secondAttribute="height" multiplier="75:16" id="mv6-bZ-GPR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
+                                <state key="normal" title="Upload Image">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="uploadImageButtonPressed:" destination="ZFH-v2-Ufe" eventType="touchUpInside" id="9Tk-BL-ja5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1j-z8-BXK">
+                                <rect key="frame" x="0.0" y="422" width="375" height="85"/>
+                                <color key="backgroundColor" red="0.31272804739999999" green="0.76564222569999996" blue="0.9700087905" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="w1j-z8-BXK" secondAttribute="height" multiplier="75:17" id="inE-4m-whZ"/>
+                                    <constraint firstAttribute="width" secondItem="w1j-z8-BXK" secondAttribute="height" multiplier="75:17" id="utC-gF-Ten"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="26"/>
+                                <state key="normal" title="Select Image">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectImageButtonPressed:" destination="ZFH-v2-Ufe" eventType="touchUpInside" id="Luw-5q-LMY"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mMc-cI-e8w" userLabel="Photo Image View">
+                                <rect key="frame" x="16" y="20" width="343" height="385"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="mMc-cI-e8w" secondAttribute="height" multiplier="49:55" id="v8F-sm-VVO"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mMc-cI-e8w" firstAttribute="leading" secondItem="SCA-bv-4mk" secondAttribute="leadingMargin" id="1EZ-Q0-cAw"/>
+                            <constraint firstAttribute="trailing" secondItem="w1j-z8-BXK" secondAttribute="trailing" id="5q7-Mv-ql1"/>
+                            <constraint firstItem="w1j-z8-BXK" firstAttribute="top" secondItem="mMc-cI-e8w" secondAttribute="bottom" constant="17" id="94r-xK-6bf"/>
+                            <constraint firstItem="xX2-t4-h9v" firstAttribute="top" secondItem="w1j-z8-BXK" secondAttribute="bottom" constant="8" id="Q8O-Jw-EaE"/>
+                            <constraint firstItem="mMc-cI-e8w" firstAttribute="top" secondItem="fsP-X0-4vW" secondAttribute="bottom" constant="20" id="QCq-18-Raw"/>
+                            <constraint firstItem="xX2-t4-h9v" firstAttribute="leading" secondItem="SCA-bv-4mk" secondAttribute="leading" id="bwY-1r-wpr"/>
+                            <constraint firstItem="w1j-z8-BXK" firstAttribute="leading" secondItem="SCA-bv-4mk" secondAttribute="leading" id="fdx-Vr-f7T"/>
+                            <constraint firstItem="mMc-cI-e8w" firstAttribute="trailing" secondItem="SCA-bv-4mk" secondAttribute="trailingMargin" id="ngV-rQ-ajX"/>
+                            <constraint firstItem="eN2-1n-TLF" firstAttribute="top" secondItem="xX2-t4-h9v" secondAttribute="bottom" constant="8" id="p76-dB-URv"/>
+                            <constraint firstAttribute="trailing" secondItem="xX2-t4-h9v" secondAttribute="trailing" id="ysN-d7-PpC"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="UploadImage" id="L8K-QI-x3b"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="photoImageView" destination="mMc-cI-e8w" id="lwG-Tb-YpF"/>
+                        <outlet property="selectImageButton" destination="w1j-z8-BXK" id="SAm-er-Be0"/>
+                        <outlet property="uploadImageButton" destination="xX2-t4-h9v" id="Fac-lo-kFm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IaE-41-P67" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1020" y="968"/>
         </scene>
     </scenes>
 </document>

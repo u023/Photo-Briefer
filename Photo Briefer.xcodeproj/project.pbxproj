@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4D27203A1E5E31F300331684 /* PBAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2720391E5E31F300331684 /* PBAuthViewController.m */; };
 		4D70E9E61E60D28100D19099 /* PBPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D70E9E51E60D28100D19099 /* PBPhotosViewController.m */; };
+		4D8329861E6E90F20057694E /* PBPhotoUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D8329851E6E90F20057694E /* PBPhotoUploadViewController.m */; };
 		4DC544241E56451000F7C8A8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC544231E56451000F7C8A8 /* main.m */; };
 		4DC544271E56451000F7C8A8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC544261E56451000F7C8A8 /* AppDelegate.m */; };
 		4DC5442A1E56451000F7C8A8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC544291E56451000F7C8A8 /* ViewController.m */; };
@@ -95,6 +96,8 @@
 		4D2720391E5E31F300331684 /* PBAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAuthViewController.m; sourceTree = "<group>"; };
 		4D70E9E41E60D28100D19099 /* PBPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBPhotosViewController.h; sourceTree = "<group>"; };
 		4D70E9E51E60D28100D19099 /* PBPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBPhotosViewController.m; sourceTree = "<group>"; };
+		4D8329841E6E90F20057694E /* PBPhotoUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBPhotoUploadViewController.h; sourceTree = "<group>"; };
+		4D8329851E6E90F20057694E /* PBPhotoUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBPhotoUploadViewController.m; sourceTree = "<group>"; };
 		4DC5441F1E56451000F7C8A8 /* Photo Briefer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Photo Briefer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DC544231E56451000F7C8A8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4DC544251E56451000F7C8A8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -183,6 +186,8 @@
 				4D70E9E51E60D28100D19099 /* PBPhotosViewController.m */,
 				4DE575311E6B13E300B9AA29 /* MyPhotosViewController.h */,
 				4DE575321E6B13E300B9AA29 /* MyPhotosViewController.m */,
+				4D8329841E6E90F20057694E /* PBPhotoUploadViewController.h */,
+				4D8329851E6E90F20057694E /* PBPhotoUploadViewController.m */,
 				4DC5442B1E56451000F7C8A8 /* Main.storyboard */,
 				4DC5442E1E56451000F7C8A8 /* Assets.xcassets */,
 				4DC544301E56451000F7C8A8 /* LaunchScreen.storyboard */,
@@ -494,6 +499,7 @@
 				4DC544271E56451000F7C8A8 /* AppDelegate.m in Sources */,
 				4D70E9E61E60D28100D19099 /* PBPhotosViewController.m in Sources */,
 				4DC544241E56451000F7C8A8 /* main.m in Sources */,
+				4D8329861E6E90F20057694E /* PBPhotoUploadViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
