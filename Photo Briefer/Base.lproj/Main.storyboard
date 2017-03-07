@@ -295,20 +295,26 @@
                                     <constraint firstAttribute="width" secondItem="mMc-cI-e8w" secondAttribute="height" multiplier="49:55" id="v8F-sm-VVO"/>
                                 </constraints>
                             </imageView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="kiY-6s-ciT">
-                                <rect key="frame" x="0.0" y="601" width="375" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4KJ-Ax-Yoc">
+                                <rect key="frame" x="0.0" y="413" width="375" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="4KJ-Ax-Yoc" secondAttribute="height" multiplier="375:2" id="iHf-Bq-SoT"/>
+                                </constraints>
                             </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="mMc-cI-e8w" firstAttribute="leading" secondItem="SCA-bv-4mk" secondAttribute="leadingMargin" id="1EZ-Q0-cAw"/>
+                            <constraint firstAttribute="trailing" secondItem="4KJ-Ax-Yoc" secondAttribute="trailing" id="52n-bP-Dha"/>
                             <constraint firstAttribute="trailing" secondItem="w1j-z8-BXK" secondAttribute="trailing" id="5q7-Mv-ql1"/>
+                            <constraint firstItem="4KJ-Ax-Yoc" firstAttribute="top" secondItem="mMc-cI-e8w" secondAttribute="bottom" constant="8" id="8lg-GF-3yl"/>
                             <constraint firstItem="w1j-z8-BXK" firstAttribute="top" secondItem="mMc-cI-e8w" secondAttribute="bottom" constant="17" id="94r-xK-6bf"/>
+                            <constraint firstItem="w1j-z8-BXK" firstAttribute="top" secondItem="4KJ-Ax-Yoc" secondAttribute="bottom" constant="7" id="DFk-yd-bNC"/>
                             <constraint firstItem="xX2-t4-h9v" firstAttribute="top" secondItem="w1j-z8-BXK" secondAttribute="bottom" constant="8" id="Q8O-Jw-EaE"/>
                             <constraint firstItem="mMc-cI-e8w" firstAttribute="top" secondItem="fsP-X0-4vW" secondAttribute="bottom" constant="20" id="QCq-18-Raw"/>
                             <constraint firstItem="xX2-t4-h9v" firstAttribute="leading" secondItem="SCA-bv-4mk" secondAttribute="leading" id="bwY-1r-wpr"/>
                             <constraint firstItem="w1j-z8-BXK" firstAttribute="leading" secondItem="SCA-bv-4mk" secondAttribute="leading" id="fdx-Vr-f7T"/>
+                            <constraint firstItem="4KJ-Ax-Yoc" firstAttribute="leading" secondItem="SCA-bv-4mk" secondAttribute="leading" id="lGL-qJ-tBU"/>
                             <constraint firstItem="mMc-cI-e8w" firstAttribute="trailing" secondItem="SCA-bv-4mk" secondAttribute="trailingMargin" id="ngV-rQ-ajX"/>
                             <constraint firstItem="eN2-1n-TLF" firstAttribute="top" secondItem="xX2-t4-h9v" secondAttribute="bottom" constant="8" id="p76-dB-URv"/>
                             <constraint firstAttribute="trailing" secondItem="xX2-t4-h9v" secondAttribute="trailing" id="ysN-d7-PpC"/>
@@ -318,6 +324,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="photoImageView" destination="mMc-cI-e8w" id="lwG-Tb-YpF"/>
+                        <outlet property="progress" destination="4KJ-Ax-Yoc" id="N6b-kU-yeF"/>
                         <outlet property="selectImageButton" destination="w1j-z8-BXK" id="SAm-er-Be0"/>
                         <outlet property="uploadImageButton" destination="xX2-t4-h9v" id="Fac-lo-kFm"/>
                     </connections>
