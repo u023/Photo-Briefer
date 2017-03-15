@@ -191,9 +191,7 @@
 {
     if ([FlickrKit sharedFlickrKit].isAuthorized) {
         
-        //NSDictionary *args = @{ @"user_id": self.userID, @"per_page": @"15" };
-        
-        self.myPhotostreamOp = [[FlickrKit sharedFlickrKit] call:@"flickr.photos.search" args:@{@"user_id": self.userID, @"per_page": @"15"} maxCacheAge:FKDUMaxAgeNeverCache completion:^(NSDictionary<NSString *,id> * _Nullable response, NSError * _Nullable error) {
+        self.myPhotostreamOp = [[FlickrKit sharedFlickrKit] call:@"flickr.photos.search" args:@{@"user_id": [FlickrKit sharedFlickrKit].userID, @"per_page": @"15"} maxCacheAge:FKDUMaxAgeNeverCache completion:^(NSDictionary<NSString *,id> * _Nullable response, NSError * _Nullable error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (response) {
                     _myPhotoURLs = [NSMutableArray array];

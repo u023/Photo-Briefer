@@ -350,6 +350,7 @@
 				NSString *fullname = [response valueForKeyPath:@"oauth.user.fullname"];
 				
 				self.authorized = YES;
+                self.userID = userid;
 				
 				if (completion) {
 					completion(username, userid, fullname, nil);
