@@ -52,6 +52,12 @@ NSString *callbackURLString = @"photobriefer://auth";
     }];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.authOp cancel];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

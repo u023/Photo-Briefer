@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *searchText;
 @property (weak, nonatomic) IBOutlet UIButton *choosePhotoButton;
 
-- (IBAction)authButtonPressed:(id)sender;
+//- (IBAction)authButtonPressed:(id)sender;
 - (IBAction)loadTodaysInterestingPressed:(id)sender;
 - (IBAction)photostreamButtonPressed:(id)sender;
 - (IBAction)choosePhotoPressed:(id)sender;

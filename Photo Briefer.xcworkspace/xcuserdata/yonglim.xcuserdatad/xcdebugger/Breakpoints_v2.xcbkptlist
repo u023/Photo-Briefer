@@ -38,7 +38,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Photo Briefer/MyPhotosViewController.m"
@@ -49,44 +49,12 @@
             endingLineNumber = "30"
             landmarkName = "-viewWillAppear:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[MyPhotosViewController viewWillAppear:]"
-                  moduleName = "Photo Briefer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yonglim/u023/Photo-Briefer/Photo%20Briefer/MyPhotosViewController.m"
-                  timestampString = "510334832.616481"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "30"
-                  endingLineNumber = "30"
-                  offsetFromSymbolStart = "124">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[MyPhotosViewController viewWillAppear:]"
-                  moduleName = "Photo Briefer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yonglim/u023/Photo-Briefer/Photo%20Briefer/MyPhotosViewController.m"
-                  timestampString = "510334832.617618"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "30"
-                  endingLineNumber = "30"
-                  offsetFromSymbolStart = "132">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Photo Briefer/MyPhotosViewController.m"
@@ -102,31 +70,63 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Photo Briefer/ViewController.m"
-            timestampString = "510562890.399572"
+            timestampString = "511298639.736941"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
             landmarkName = "-photostreamButtonPressed:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ViewController photostreamButtonPressed:]"
+                  moduleName = "Photo Briefer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yonglim/u023/Photo-Briefer/Photo%20Briefer/ViewController.m"
+                  timestampString = "511298640.956537"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "196"
+                  endingLineNumber = "196"
+                  offsetFromSymbolStart = "143">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__43-[ViewController photostreamButtonPressed:]_block_invoke"
+                  moduleName = "Photo Briefer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yonglim/u023/Photo-Briefer/Photo%20Briefer/ViewController.m"
+                  timestampString = "511298640.958237"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "196"
+                  endingLineNumber = "196"
+                  offsetFromSymbolStart = "19">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Photo Briefer/ViewController.m"
-            timestampString = "510562890.399572"
+            timestampString = "511298639.736941"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
             landmarkName = "-photostreamButtonPressed:"
             landmarkType = "7">
          </BreakpointContent>
@@ -150,32 +150,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Photo Briefer/PBFirstRunViewController.m"
-            timestampString = "510738145.472558"
+            filePath = "Photo Briefer/ViewController.m"
+            timestampString = "511298639.736941"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "-userLoggedIn:userID:"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "-photostreamButtonPressed:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Photo Briefer/PBFirstRunViewController.m"
-            timestampString = "510738234.560333"
+            timestampString = "511298639.736941"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "-userAuthenticationCallback:"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "-prepareForSegue:sender:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

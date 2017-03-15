@@ -36,8 +36,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [self.uploadOp cancel];
     [super viewWillDisappear:animated];
+    [self.uploadOp cancel];
 }
 
 - (IBAction)selectImageButtonPressed:(id)sender

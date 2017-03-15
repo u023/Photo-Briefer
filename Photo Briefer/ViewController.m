@@ -14,6 +14,7 @@
 #import "PBPhotosViewController.h"
 #import "MyPhotosViewController.h"
 #import "PBPhotoUploadViewController.h"
+#import "PBFirstRunViewController.h"
 
 @interface ViewController ()
 
@@ -41,21 +42,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userAuthenticationCallback:) name:@"UserAuthCallbackNotification" object:nil];
-    
-    // Check if there is a stored token
-    // You should do this once on app launch
-    self.checkAuthOp = [[FlickrKit sharedFlickrKit] checkAuthorizationOnCompletion:^(NSString *userName, NSString *userId, NSString *fullName, NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (!error) {
-                [self userLoggedIn:userName userID:userId];
-            } else {
-                [self userLoggedOut];
-            }
-        });
-    }];
+//    // Do any additional setup after loading the view, typically from a nib.
+//    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userAuthenticationCallback:) name:@"UserAuthCallbackNotification" object:nil];
+//    
+//    // Check if there is a stored token
+//    // You should do this once on app launch
+//    self.checkAuthOp = [[FlickrKit sharedFlickrKit] checkAuthorizationOnCompletion:^(NSString *userName, NSString *userId, NSString *fullName, NSError *error) {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            if (!error) {
+//                [self userLoggedIn:userName userID:userId];
+//            } else {
+//                [self userLoggedOut];
+//            }
+//        });
+//    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated

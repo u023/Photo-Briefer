@@ -9,6 +9,8 @@
 #import "FlickrKit.h"
 
 #import "PBFirstRunViewController.h"
+#import "PBPhotosViewController.h"
+#import "ViewController.h"
 
 @interface PBFirstRunViewController ()
 
@@ -16,7 +18,6 @@
 @property (nonatomic, retain) FKDUNetworkOperation *completeAuthOp;
 @property (weak, nonatomic) IBOutlet UIButton *signInButton;
 @property (weak, nonatomic) IBOutlet UILabel *signInLabel;
-
 @property (nonatomic, retain) NSString *userID;
 
 @end
@@ -35,11 +36,27 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!error) {
                 [self userLoggedIn:userName userID:userId];
+                [self performSegueWithIdentifier:@"SegueToMainPage" sender:self];
             } else {
                 [self userLoggedOut];
             }
         });
     }];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = true;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden = NO;
+    
+    [self.checkAuthOp cancel];
+    [self.completeAuthOp cancel];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,7 +84,10 @@
                 [alert addAction:cancel];
                 [self presentViewController:alert animated:YES completion:nil];
             }
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            
+            //TODO instead to go back to rootviewController, I need to
+            //[self.navigationController popToRootViewControllerAnimated:YES];
+            [self performSegueWithIdentifier:@"SegueToMainPage" sender:self];
         });
     }];
 }
@@ -98,14 +118,21 @@
     }
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqualToString:@"SegueToMainPage"]) {
+//        ViewController *mainView = [segue destinationViewController];
+    } else if ([segue.identifier isEqualToString:@"SegueToMyPhotos"]) {
+//        MyPhotosViewController *myPhotosView = [segue destinationViewController];
+//        myPhotosView.myPhotoURLs = _myPhotoURLs;
+    } else if ([segue.identifier isEqualToString:@"SegueToUploadView"]) {
+        //PBPhotoUploadViewController *uploadView = [segue destinationViewController];
+    }
 }
-*/
 
 @end
