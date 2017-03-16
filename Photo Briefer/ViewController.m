@@ -20,10 +20,10 @@
 
 @property (nonatomic, retain) FKFlickrNetworkOperation *todaysInterestingOp;
 @property (nonatomic, retain) FKFlickrNetworkOperation *myPhotostreamOp;
-@property (nonatomic, retain) FKDUNetworkOperation *completeAuthOp;
+//@property (nonatomic, retain) FKDUNetworkOperation *completeAuthOp;
 @property (nonatomic, retain) FKDUNetworkOperation *checkAuthOp;
 @property (nonatomic, retain) FKImageUploadNetworkOperation *uploadOp;
-@property (nonatomic, retain) NSString *userID;
+//@property (nonatomic, retain) NSString *userID;
 @property (nonatomic, retain) NSMutableArray *photoURLs;
 @property (nonatomic, retain) NSMutableArray *myPhotoURLs;
 
@@ -73,8 +73,8 @@
     
     [self.todaysInterestingOp cancel];
     [self.myPhotostreamOp cancel];
-    [self.completeAuthOp cancel];
-    [self.checkAuthOp cancel];
+//    [self.completeAuthOp cancel];
+//    [self.checkAuthOp cancel];
     [self.uploadOp cancel];
     [super viewWillDisappear:animated];
 }
@@ -87,59 +87,59 @@
 
 #pragma mark - Auth
 
-- (void)userAuthenticationCallback:(NSNotification *)notification
-{
-    
-    //TODO: need to figure out why we want to call this...?
-    NSURL *callbackURL = notification.object;
-    
-    self.completeAuthOp = [[FlickrKit sharedFlickrKit] completeAuthWithURL:callbackURL completion:^(NSString * _Nullable userName, NSString * _Nullable userId, NSString * _Nullable fullName, NSError * _Nullable error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (!error) {
-                [self userLoggedIn:userName userID:userId];
-            } else {
-//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//                [alert show];
-                
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                    [alert dismissViewControllerAnimated:YES completion:nil];
-                }];
-                [alert addAction:cancel];
-                [self presentViewController:alert animated:YES completion:nil];
-
-            }
-            [self.navigationController popToRootViewControllerAnimated:YES];
-        });
-    }];
-}
-
-- (void)userLoggedIn:(NSString *)username userID:(NSString *)userID
-{
-    self.userID = userID;
-    [self.authButton setTitle:@"Logout" forState:UIControlStateNormal];
-    self.authLabel.text = [NSString stringWithFormat:@"You are logged in as %@", username];
-}
-
-- (void)userLoggedOut
-{
-    [self.authButton setTitle:@"Login" forState:UIControlStateNormal];
-    self.authLabel.text = @"Login to flickr";
-}
-
-
-- (IBAction)authButtonPressed:(id)sender
-{
-    if ([FlickrKit sharedFlickrKit].isAuthorized) {
-        [[FlickrKit sharedFlickrKit] logout];
-        [self userLoggedOut];
-    } else {
-//        PBAuthViewController *authView = [[PBAuthViewController alloc] init];
-//        [self.navigationController pushViewController:authView animated:YES];
-        
-         [self performSegueWithIdentifier:@"SegueToAuth" sender:self];
-    }
-}
+//- (void)userAuthenticationCallback:(NSNotification *)notification
+//{
+//    
+//    //TODO: need to figure out why we want to call this...?
+//    NSURL *callbackURL = notification.object;
+//    
+//    self.completeAuthOp = [[FlickrKit sharedFlickrKit] completeAuthWithURL:callbackURL completion:^(NSString * _Nullable userName, NSString * _Nullable userId, NSString * _Nullable fullName, NSError * _Nullable error) {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            if (!error) {
+//                [self userLoggedIn:userName userID:userId];
+//            } else {
+////                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+////                [alert show];
+//                
+//                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+//                UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//                    [alert dismissViewControllerAnimated:YES completion:nil];
+//                }];
+//                [alert addAction:cancel];
+//                [self presentViewController:alert animated:YES completion:nil];
+//
+//            }
+//            [self.navigationController popToRootViewControllerAnimated:YES];
+//        });
+//    }];
+//}
+//
+//- (void)userLoggedIn:(NSString *)username userID:(NSString *)userID
+//{
+//    self.userID = userID;
+//    [self.authButton setTitle:@"Logout" forState:UIControlStateNormal];
+//    self.authLabel.text = [NSString stringWithFormat:@"You are logged in as %@", username];
+//}
+//
+//- (void)userLoggedOut
+//{
+//    [self.authButton setTitle:@"Login" forState:UIControlStateNormal];
+//    self.authLabel.text = @"Login to flickr";
+//}
+//
+//
+//- (IBAction)authButtonPressed:(id)sender
+//{
+//    if ([FlickrKit sharedFlickrKit].isAuthorized) {
+//        [[FlickrKit sharedFlickrKit] logout];
+//        [self userLoggedOut];
+//    } else {
+////        PBAuthViewController *authView = [[PBAuthViewController alloc] init];
+////        [self.navigationController pushViewController:authView animated:YES];
+//        
+//         [self performSegueWithIdentifier:@"SegueToAuth" sender:self];
+//    }
+//}
 
 - (IBAction)loadTodaysInterestingPressed:(id)sender
 {
@@ -339,15 +339,15 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
-    if ([segue.identifier isEqualToString:@"SegueToPhotos"]) {
-        PBPhotosViewController *photosView = [segue destinationViewController];
-        photosView.photoURLs = _photoURLs;
-    } else if ([segue.identifier isEqualToString:@"SegueToMyPhotos"]) {
-        MyPhotosViewController *myPhotosView = [segue destinationViewController];
-        myPhotosView.myPhotoURLs = _myPhotoURLs;
-    } else if ([segue.identifier isEqualToString:@"SegueToUploadView"]) {
-        //PBPhotoUploadViewController *uploadView = [segue destinationViewController];
-    }
+//    if ([segue.identifier isEqualToString:@"SegueToPhotos"]) {
+//        PBPhotosViewController *photosView = [segue destinationViewController];
+//        photosView.photoURLs = _photoURLs;
+//    } else if ([segue.identifier isEqualToString:@"SegueToMyPhotos"]) {
+//        MyPhotosViewController *myPhotosView = [segue destinationViewController];
+//        myPhotosView.myPhotoURLs = _myPhotoURLs;
+//    } else if ([segue.identifier isEqualToString:@"SegueToUploadView"]) {
+//        //PBPhotoUploadViewController *uploadView = [segue destinationViewController];
+//    }
 }
 
 

@@ -125,14 +125,14 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
-    if ([segue.identifier isEqualToString:@"SegueToMainPage"]) {
-//        ViewController *mainView = [segue destinationViewController];
-    } else if ([segue.identifier isEqualToString:@"SegueToMyPhotos"]) {
-//        MyPhotosViewController *myPhotosView = [segue destinationViewController];
-//        myPhotosView.myPhotoURLs = _myPhotoURLs;
-    } else if ([segue.identifier isEqualToString:@"SegueToUploadView"]) {
-        //PBPhotoUploadViewController *uploadView = [segue destinationViewController];
-    }
+//    if ([segue.identifier isEqualToString:@"SegueToMainPage"]) {
+////        ViewController *mainView = [segue destinationViewController];
+//    } else if ([segue.identifier isEqualToString:@"SegueToMyPhotos"]) {
+////        MyPhotosViewController *myPhotosView = [segue destinationViewController];
+////        myPhotosView.myPhotoURLs = _myPhotoURLs;
+//    } else if ([segue.identifier isEqualToString:@"SegueToUploadView"]) {
+//        //PBPhotoUploadViewController *uploadView = [segue destinationViewController];
+//    }
 }
 
 @end
