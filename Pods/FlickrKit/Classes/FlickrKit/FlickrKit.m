@@ -351,6 +351,7 @@
 				
 				self.authorized = YES;
                 self.userID = userid;
+                self.username = username;
 				
 				if (completion) {
 					completion(username, userid, fullname, nil);

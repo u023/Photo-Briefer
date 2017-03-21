@@ -51,6 +51,7 @@ FOUNDATION_EXPORT const unsigned char FlickrKitVersionString[];
 @property (nonatomic, strong, readonly, nullable) NSString *authSecret;
 @property (nonatomic, assign, readonly) FKPermission permissionGranted;
 @property (nonatomic, strong, nullable) NSString *userID;
+@property (nonatomic, strong, nullable) NSString *username;
 
 /**
  *  Access the FlickrKit shared singleton

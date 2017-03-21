@@ -23,7 +23,7 @@
 //@property (nonatomic, retain) FKDUNetworkOperation *completeAuthOp;
 @property (nonatomic, retain) FKDUNetworkOperation *checkAuthOp;
 @property (nonatomic, retain) FKImageUploadNetworkOperation *uploadOp;
-//@property (nonatomic, retain) NSString *userID;
+@property (nonatomic, retain) NSString *userID;
 @property (nonatomic, retain) NSMutableArray *photoURLs;
 @property (nonatomic, retain) NSMutableArray *myPhotoURLs;
 
@@ -57,6 +57,10 @@
 //            }
 //        });
 //    }];
+    
+    if ([FlickrKit sharedFlickrKit].isAuthorized) {
+        [self userLoggedIn:[FlickrKit sharedFlickrKit].username userID:[FlickrKit sharedFlickrKit].userID];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -113,33 +117,33 @@
 //        });
 //    }];
 //}
-//
-//- (void)userLoggedIn:(NSString *)username userID:(NSString *)userID
-//{
-//    self.userID = userID;
-//    [self.authButton setTitle:@"Logout" forState:UIControlStateNormal];
-//    self.authLabel.text = [NSString stringWithFormat:@"You are logged in as %@", username];
-//}
-//
-//- (void)userLoggedOut
-//{
-//    [self.authButton setTitle:@"Login" forState:UIControlStateNormal];
-//    self.authLabel.text = @"Login to flickr";
-//}
-//
-//
-//- (IBAction)authButtonPressed:(id)sender
-//{
-//    if ([FlickrKit sharedFlickrKit].isAuthorized) {
-//        [[FlickrKit sharedFlickrKit] logout];
-//        [self userLoggedOut];
-//    } else {
-////        PBAuthViewController *authView = [[PBAuthViewController alloc] init];
-////        [self.navigationController pushViewController:authView animated:YES];
-//        
-//         [self performSegueWithIdentifier:@"SegueToAuth" sender:self];
-//    }
-//}
+
+- (void)userLoggedIn:(NSString *)username userID:(NSString *)userID
+{
+    self.userID = userID;
+    [self.authButton setTitle:@"Logout" forState:UIControlStateNormal];
+    self.authLabel.text = [NSString stringWithFormat:@"You are logged in as %@", username];
+}
+
+- (void)userLoggedOut
+{
+    [self.authButton setTitle:@"Login" forState:UIControlStateNormal];
+    self.authLabel.text = @"Login to flickr";
+}
+
+
+- (IBAction)authButtonPressed:(id)sender
+{
+    if ([FlickrKit sharedFlickrKit].isAuthorized) {
+        [[FlickrKit sharedFlickrKit] logout];
+        [self userLoggedOut];
+    } else {
+//        PBAuthViewController *authView = [[PBAuthViewController alloc] init];
+//        [self.navigationController pushViewController:authView animated:YES];
+        
+         [self performSegueWithIdentifier:@"SegueToAuth" sender:self];
+    }
+}
 
 - (IBAction)loadTodaysInterestingPressed:(id)sender
 {
