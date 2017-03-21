@@ -87,6 +87,7 @@
             
             //TODO instead to go back to rootviewController, I need to
             //[self.navigationController popToRootViewControllerAnimated:YES];
+
             [self performSegueWithIdentifier:@"SegueToMainPage" sender:self];
         });
     }];
