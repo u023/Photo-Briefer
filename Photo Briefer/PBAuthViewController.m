@@ -24,6 +24,8 @@ NSString *callbackURLString = @"photobriefer://auth";
 {
     [super viewWillAppear:animated];
     
+    self.navigationController.navigationBarHidden = YES;
+    
     // This must be defined in your Info.plist
     // Flickr will call this back.  Ensure you configure your flickr app as a web app
 //    NSString *callbackURLString = @"photobriefer://auth";

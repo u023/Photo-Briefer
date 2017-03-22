@@ -36,7 +36,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!error) {
                 [self userLoggedIn:userName userID:userId];
-                [self performSegueWithIdentifier:@"SegueToMainPage" sender:self];
+                [self performSegueWithIdentifier:@"SegueToMain" sender:self];
             } else {
                 [self userLoggedOut];
             }
@@ -68,7 +68,6 @@
 
 - (void)userAuthenticationCallback:(NSNotification *)notification
 {
-    
     //TODO: need to figure out why we want to call this...?
     NSURL *callbackURL = notification.object;
     
@@ -76,6 +75,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!error) {
                 [self userLoggedIn:userName userID:userId];
+                [self performSegueWithIdentifier:@"SegueToMain" sender:self];
             } else {
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -84,11 +84,6 @@
                 [alert addAction:cancel];
                 [self presentViewController:alert animated:YES completion:nil];
             }
-            
-            //TODO instead to go back to rootviewController, I need to
-            //[self.navigationController popToRootViewControllerAnimated:YES];
-
-            [self performSegueWithIdentifier:@"SegueToMainPage" sender:self];
         });
     }];
 }
@@ -112,9 +107,6 @@
         [[FlickrKit sharedFlickrKit] logout];
         [self userLoggedOut];
     } else {
-        //        PBAuthViewController *authView = [[PBAuthViewController alloc] init];
-        //        [self.navigationController pushViewController:authView animated:YES];
-        
         [self performSegueWithIdentifier:@"SegueToAuth" sender:self];
     }
 }
@@ -127,12 +119,12 @@
     // Pass the selected object to the new view controller.
     
 //    if ([segue.identifier isEqualToString:@"SegueToMainPage"]) {
-////        ViewController *mainView = [segue destinationViewController];
-//    } else if ([segue.identifier isEqualToString:@"SegueToMyPhotos"]) {
-////        MyPhotosViewController *myPhotosView = [segue destinationViewController];
-////        myPhotosView.myPhotoURLs = _myPhotoURLs;
-//    } else if ([segue.identifier isEqualToString:@"SegueToUploadView"]) {
-//        //PBPhotoUploadViewController *uploadView = [segue destinationViewController];
+//        ViewController *mainView = [segue destinationViewController];
+////    } else if ([segue.identifier isEqualToString:@"SegueToMyPhotos"]) {
+//////        MyPhotosViewController *myPhotosView = [segue destinationViewController];
+//////        myPhotosView.myPhotoURLs = _myPhotoURLs;
+////    } else if ([segue.identifier isEqualToString:@"SegueToUploadView"]) {
+////        //PBPhotoUploadViewController *uploadView = [segue destinationViewController];
 //    }
 }
 

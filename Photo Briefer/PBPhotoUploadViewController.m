@@ -38,6 +38,8 @@
 {
     [super viewWillDisappear:animated];
     [self.uploadOp cancel];
+    
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (IBAction)selectImageButtonPressed:(id)sender

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PBFirstRunViewController : UIViewController
+@interface PBFirstRunViewController : UIViewController <UINavigationControllerDelegate>
 
 @end

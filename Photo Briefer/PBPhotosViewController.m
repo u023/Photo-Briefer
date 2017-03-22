@@ -40,6 +40,8 @@
 {
     [super viewWillAppear:animated];
     
+    self.navigationController.navigationBarHidden = YES;
+    
     [self getPhotoURLs];
     
     for (NSURL *url in self.photoURLs) {
