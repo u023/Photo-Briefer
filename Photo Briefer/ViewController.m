@@ -42,6 +42,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.navigationController.navigationBarHidden = YES;
 //    // Do any additional setup after loading the view, typically from a nib.
 //    
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userAuthenticationCallback:) name:@"UserAuthCallbackNotification" object:nil];
@@ -73,7 +75,7 @@
 {
     // Cancel any operations when you leave views
     
-    self.navigationController.navigationBarHidden = NO;
+    //self.navigationController.navigationBarHidden = NO;
     
     [self.todaysInterestingOp cancel];
     [self.myPhotostreamOp cancel];

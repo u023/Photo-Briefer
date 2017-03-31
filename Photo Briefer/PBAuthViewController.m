@@ -20,11 +20,16 @@ NSString *callbackURLString = @"photobriefer://auth";
 
 @implementation PBAuthViewController
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.navigationController.navigationBarHidden = YES;
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    self.navigationController.navigationBarHidden = YES;
     
     // This must be defined in your Info.plist
     // Flickr will call this back.  Ensure you configure your flickr app as a web app
@@ -58,12 +63,6 @@ NSString *callbackURLString = @"photobriefer://auth";
 {
     [super viewWillDisappear:animated];
     [self.authOp cancel];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning

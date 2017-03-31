@@ -12,7 +12,7 @@
 
 @interface PBPhotosViewController ()
 @property (nonatomic, retain) FKFlickrNetworkOperation *todaysInterestingOp;
-@property (nonatomic, retain) NSMutableArray *photoURLs;
+@property (nonatomic, retain) NSMutableArray *todayPhotoURLs;
 @end
 
 @implementation PBPhotosViewController
@@ -31,20 +31,30 @@
 {
     self = [super init];
     if (self) {
-        self.photoURLs = _photoURLs;
+        self.todayPhotoURLs = _todayPhotoURLs;
     }
     return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    self.navigationController.navigationBarHidden = YES;
+    [self getTodayPhotoURLs];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     
-    [self getPhotoURLs];
-    
-    for (NSURL *url in self.photoURLs) {
+    for (NSURL *url in self.todayPhotoURLs) {
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
             UIImage *image = [[UIImage alloc] initWithData:data];
@@ -53,16 +63,15 @@
     }
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self.todaysInterestingOp cancel];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
 }
 
 - (void) dealloc
@@ -76,25 +85,20 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)getPhotoURLs
+- (void)getTodayPhotoURLs
 {
     FKFlickrInterestingnessGetList *interesting = [[FKFlickrInterestingnessGetList alloc] init];
     interesting.per_page = @"15";
+    
     self.todaysInterestingOp = [[FlickrKit sharedFlickrKit] call:interesting completion:^(NSDictionary<NSString *,id> * _Nullable response, NSError * _Nullable error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (response) {
-                self.photoURLs = [NSMutableArray array];
+                // get photo list here
+                self.todayPhotoURLs = [NSMutableArray array];
                 for (NSDictionary *photoDictionary in [response valueForKeyPath:@"photos.photo"]) {
                     NSURL *url = [[FlickrKit sharedFlickrKit] photoURLForSize:FKPhotoSizeSmall240 fromPhotoDictionary:photoDictionary];
-                    [self.photoURLs addObject:url];
+                    [self.todayPhotoURLs addObject:url];
                 }
-                
-                //TODO add PBPhotosViewController to display these photo here.
-                // When I do this route, I can't get the imageScrollView working somehow :(
-                //                PBPhotosViewController *photosView = [[PBPhotosViewController alloc] initWithURLArray:photoURLs];
-                //                [self.navigationController pushViewController:photosView animated:YES];
-//                [self performSegueWithIdentifier:@"SegueToPhotos" sender:self];
-                
             } else {
                 //Error handling
                 switch (error.code) {
@@ -112,7 +116,6 @@
                 }];
                 [alert addAction:cancel];
                 [self presentViewController:alert animated:YES completion:nil];
-                
             }
         });
     }];

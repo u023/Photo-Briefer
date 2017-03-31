@@ -12,7 +12,7 @@
 
 @interface MyPhotosViewController ()
 @property (nonatomic, retain) FKFlickrNetworkOperation *myPhotostreamOp;
-@property (nonatomic, retain) NSMutableArray *photoURLs;
+@property (nonatomic, retain) NSMutableArray *myPhotoURLs;
 @end
 
 @implementation MyPhotosViewController
@@ -31,20 +31,30 @@
 {
     self = [super init];
     if (self) {
-        self.photoURLs = _photoURLs;
+        self.myPhotoURLs = _myPhotoURLs;
     }
     return self;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    self.navigationController.navigationBarHidden = YES;
-    
     [self getMyPhotoURLs];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     
-    for (NSURL *url in self.photoURLs) {
+    for (NSURL *url in self.myPhotoURLs) {
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
             UIImage *image = [[UIImage alloc] initWithData:data];
@@ -57,11 +67,8 @@
 {
     [super viewWillDisappear:animated];
     [self.myPhotostreamOp cancel];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    //[self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
 }
 
 - (void) dealloc
@@ -94,31 +101,45 @@
 
 - (void)getMyPhotoURLs
 {
-    if ([FlickrKit sharedFlickrKit].isAuthorized && [FlickrKit sharedFlickrKit].userID != nil) {
+    if ([FlickrKit sharedFlickrKit].isAuthorized) {
         
         self.myPhotostreamOp = [[FlickrKit sharedFlickrKit] call:@"flickr.photos.search" args:@{@"user_id": [FlickrKit sharedFlickrKit].userID, @"per_page": @"15"} maxCacheAge:FKDUMaxAgeNeverCache completion:^(NSDictionary<NSString *,id> * _Nullable response, NSError * _Nullable error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (response) {
-                    //self.myPhotoURLs = [NSMutableArray array];
-                    self.photoURLs = [NSMutableArray array];
-                    
+                    // Get photo list here
+                    self.myPhotoURLs = [NSMutableArray array];
                     for (NSDictionary *photoDictionary in [response valueForKeyPath:@"photos.photo"]) {
                         NSURL *url = [[FlickrKit sharedFlickrKit] photoURLForSize:FKPhotoSizeSmall240 fromPhotoDictionary:photoDictionary];
-                        [self.photoURLs addObject:url];
+                        [self.myPhotoURLs addObject:url];
+                    }
+                } else {
+                    //Error handling
+                    switch (error.code) {
+                        case FKFlickrInterestingnessGetListError_ServiceCurrentlyUnavailable:
+                            
+                            break;
+                            
+                        default:
+                            break;
                     }
                     
-                    //                    PBPhotosViewController *photosView = [[PBPhotosViewController alloc] initWithURLArray:_myPhotoURLs];
-                    //                    [self.navigationController pushViewController:photosView animated:YES];
-                    // segue to
-//                    [self performSegueWithIdentifier:@"SegueToMyPhotos" sender:self];
-                    
-                } else {
-//                    [self showErrorAlertWithMessage:error];
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                        [alert dismissViewControllerAnimated:YES completion:nil];
+                    }];
+                    [alert addAction:cancel];
+                    [self presentViewController:alert animated:YES completion:nil];
                 }
             });
         }];
     } else {
-//        [self showLoginError];
+        NSString *msg = @"Please login first";
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:msg preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [alert addAction:cancel];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
