@@ -94,7 +94,7 @@
 
 - (void)getMyPhotoURLs
 {
-    if ([FlickrKit sharedFlickrKit].isAuthorized) {
+    if ([FlickrKit sharedFlickrKit].isAuthorized && [FlickrKit sharedFlickrKit].userID != nil) {
         
         self.myPhotostreamOp = [[FlickrKit sharedFlickrKit] call:@"flickr.photos.search" args:@{@"user_id": [FlickrKit sharedFlickrKit].userID, @"per_page": @"15"} maxCacheAge:FKDUMaxAgeNeverCache completion:^(NSDictionary<NSString *,id> * _Nullable response, NSError * _Nullable error) {
             dispatch_async(dispatch_get_main_queue(), ^{

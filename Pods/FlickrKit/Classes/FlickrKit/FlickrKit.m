@@ -272,6 +272,8 @@
 				self.authorized = NO;
 				self.authToken = nil;
 				self.authSecret = nil;
+                self.userID = nil;
+                self.username = nil;
 				NSString *response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 				NSDictionary *userInfo = @{NSLocalizedDescriptionKey: response};
 				NSError *error = [NSError errorWithDomain:FKFlickrKitErrorDomain code:FKErrorAuthenticating userInfo:userInfo];
@@ -298,6 +300,8 @@
 					[[NSUserDefaults standardUserDefaults] setValue:oats forKey:kFKStoredTokenSecret];
 					[[NSUserDefaults standardUserDefaults] synchronize];
 					self.authorized = YES;
+                    self.userID = nsid;
+                    self.username = un;
 					self.authToken = oat;
 					self.authSecret = oats;
 					self.beginAuthURL = nil;
@@ -384,6 +388,8 @@
 	self.authSecret = nil;
 	self.authToken = nil;
 	self.beginAuthURL = nil;
+    self.username = nil;
+    self.userID = nil;
 }
 
 @end
