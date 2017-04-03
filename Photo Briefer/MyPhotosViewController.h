@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MyPhotosViewController : UIViewController
-//- (id)initWithURLArray:(NSArray *)urlArray;
+- (id)initWithURLArray:(NSMutableArray *)urlArray;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *imageScrollView;
 //@property (nonatomic, retain) NSArray *myPhotoURLs;

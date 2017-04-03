@@ -13,19 +13,20 @@
 @interface PBPhotosViewController ()
 @property (nonatomic, retain) FKFlickrNetworkOperation *todaysInterestingOp;
 @property (nonatomic, retain) NSMutableArray *todayPhotoURLs;
+//@property (nonatomic, assign) BOOL isAlreadyAdded;
 @end
 
 @implementation PBPhotosViewController
 //@synthesize photoURLs = _photoURLs;
 
-//- (id)initWithURLArray:(NSArray *)urlArray
-//{
-//    self = [super init];
-//    if (self) {
-//        self.photoURLs = urlArray;
-//    }
-//    return self;
-//}
+- (id)initWithURLArray:(NSMutableArray *)urlArray
+{
+    self = [super init];
+    if (self) {
+        self.todayPhotoURLs = urlArray;
+    }
+    return self;
+}
 
 - (id)init
 {
@@ -41,6 +42,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = YES;
+    
+//    self.isAlreadyAdded = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -54,13 +57,16 @@
 {
     [super viewDidAppear:animated];
     
-    for (NSURL *url in self.todayPhotoURLs) {
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
-            UIImage *image = [[UIImage alloc] initWithData:data];
-            [self addImageToView:image];
-        }];
-    }
+//    if (!self.isAlreadyAdded) {
+        for (NSURL *url in self.todayPhotoURLs) {
+            NSURLRequest *request = [NSURLRequest requestWithURL:url];
+            [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+                UIImage *image = [[UIImage alloc] initWithData:data];
+                [self addImageToView:image];
+            }];
+        }
+//        self.isAlreadyAdded = YES;
+//    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated

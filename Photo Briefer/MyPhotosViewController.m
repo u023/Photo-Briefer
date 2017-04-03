@@ -13,19 +13,20 @@
 @interface MyPhotosViewController ()
 @property (nonatomic, retain) FKFlickrNetworkOperation *myPhotostreamOp;
 @property (nonatomic, retain) NSMutableArray *myPhotoURLs;
+@property (nonatomic, assign) BOOL isAlreadyAdded;
 @end
 
 @implementation MyPhotosViewController
 //@synthesize myPhotoURLs = _myPhotoURLs;
 
-//- (id)initWithURLArray:(NSArray *)urlArray
-//{
-//    self = [super init];
-//    if (self) {
-//        self.photoURLs = urlArray;
-//    }
-//    return self;
-//}
+- (id)initWithURLArray:(NSMutableArray *)urlArray
+{
+    self = [super init];
+    if (self) {
+        self.myPhotoURLs = urlArray;
+    }
+    return self;
+}
 
 - (id)init
 {
@@ -41,25 +42,31 @@
     // Do any additional setup after loading the view.
     
     self.navigationController.navigationBarHidden = YES;
+//    self.isAlreadyAdded = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    [self getMyPhotoURLs];
+    if (!self.isAlreadyAdded) {
+        [self getMyPhotoURLs];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    for (NSURL *url in self.myPhotoURLs) {
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
-            UIImage *image = [[UIImage alloc] initWithData:data];
-            [self addImageToView:image];
-        }];
+    if (!self.isAlreadyAdded) {
+        for (NSURL *url in self.myPhotoURLs) {
+            NSURLRequest *request = [NSURLRequest requestWithURL:url];
+            [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+                UIImage *image = [[UIImage alloc] initWithData:data];
+                [self addImageToView:image];
+            }];
+        }
+        self.isAlreadyAdded = YES;
     }
 }
 
