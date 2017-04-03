@@ -118,49 +118,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Photo Briefer/PBPhotosViewController.m"
-            timestampString = "512947587.692332"
+            timestampString = "512949098.641022"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "-getTodayPhotoURLs"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "-viewWillAppear:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[PBPhotosViewController getTodayPhotoURLs]"
-                  moduleName = "Photo Briefer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yonglim/u023/Photo-Briefer/Photo%20Briefer/PBPhotosViewController.m"
-                  timestampString = "512690331.97439"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "93"
-                  endingLineNumber = "93"
-                  offsetFromSymbolStart = "117">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__43-[PBPhotosViewController getTodayPhotoURLs]_block_invoke"
-                  moduleName = "Photo Briefer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yonglim/u023/Photo-Briefer/Photo%20Briefer/PBPhotosViewController.m"
-                  timestampString = "512690331.976228"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "93"
-                  endingLineNumber = "93"
-                  offsetFromSymbolStart = "19">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
