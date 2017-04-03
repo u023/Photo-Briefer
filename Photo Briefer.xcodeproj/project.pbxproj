@@ -663,6 +663,7 @@
 				DEVELOPMENT_TEAM = 7P8FHBU8VX;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/FlickrKit/Classes/**";
 				INFOPLIST_FILE = "Photo Briefer/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.u023.Photo-Briefer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -677,6 +678,7 @@
 				DEVELOPMENT_TEAM = 7P8FHBU8VX;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/FlickrKit/Classes/**";
 				INFOPLIST_FILE = "Photo Briefer/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.u023.Photo-Briefer";
 				PRODUCT_NAME = "$(TARGET_NAME)";

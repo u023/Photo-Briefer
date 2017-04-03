@@ -98,7 +98,7 @@
 - (void)userLoggedOut
 {
     [self.signInButton setTitle:@"Sign In" forState:UIControlStateNormal];
-    self.signInLabel.text = @"Login to flickr";
+    self.signInLabel.text = @"Save all your photos on cloud and never lose again.";
 }
 
 - (IBAction)signInButtonPressed:(id)sender
