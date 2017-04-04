@@ -168,7 +168,7 @@
             </objects>
             <point key="canvasLocation" x="-1322.4000000000001" y="213.64317841079463"/>
         </scene>
-        <!--My Photos-->
+        <!--My photos-->
         <scene sceneID="ge1-Lf-sgS">
             <objects>
                 <viewController id="V9s-ab-gKl" customClass="MyPhotosViewController" sceneMemberID="viewController">
@@ -192,7 +192,7 @@
                             <constraint firstItem="kel-f3-c1K" firstAttribute="leading" secondItem="NyS-Kk-3wG" secondAttribute="leading" id="wY6-d5-EPA"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My Photos" id="6ZL-84-fDP"/>
+                    <tabBarItem key="tabBarItem" title="My photos" id="6ZL-84-fDP"/>
                     <connections>
                         <outlet property="imageScrollView" destination="kel-f3-c1K" id="TgY-q7-HEh"/>
                     </connections>
@@ -201,7 +201,7 @@
             </objects>
             <point key="canvasLocation" x="-1322" y="-2008"/>
         </scene>
-        <!--Today's Photos-->
+        <!--Photos View Controller-->
         <scene sceneID="7gP-zr-nuY">
             <objects>
                 <viewController id="mO0-Gr-stK" customClass="PBPhotosViewController" sceneMemberID="viewController">
@@ -225,7 +225,7 @@
                             <constraint firstAttribute="trailing" secondItem="XmO-d7-At6" secondAttribute="trailing" id="s3p-uT-3n3"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Today's Photos" id="rdk-9x-lhH"/>
+                    <tabBarItem key="tabBarItem" systemItem="mostRecent" id="rdk-9x-lhH"/>
                     <connections>
                         <outlet property="imageScrollView" destination="XmO-d7-At6" id="BWT-o0-kCZ"/>
                     </connections>
@@ -263,7 +263,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rwV-Zc-28P">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                         </subviews>
@@ -347,7 +347,7 @@
                             <constraint firstItem="w1j-z8-BXK" firstAttribute="leading" secondItem="xX2-t4-h9v" secondAttribute="leading" id="vxu-p3-N1o"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Camera" id="L8K-QI-x3b"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Camera" image="CameraIcon50x50" selectedImage="CameraIcon50x50" id="L8K-QI-x3b"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="photoImageView" destination="mMc-cI-e8w" id="lwG-Tb-YpF"/>
@@ -362,6 +362,9 @@
             <point key="canvasLocation" x="-1322.4000000000001" y="-539.28035982008998"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CameraIcon50x50" width="25" height="18"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="LOt-Hh-sC5"/>
     </inferredMetricsTieBreakers>
