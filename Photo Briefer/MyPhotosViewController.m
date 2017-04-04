@@ -116,7 +116,7 @@
                     // Get photo list here
                     self.myPhotoURLs = [NSMutableArray array];
                     for (NSDictionary *photoDictionary in [response valueForKeyPath:@"photos.photo"]) {
-                        NSURL *url = [[FlickrKit sharedFlickrKit] photoURLForSize:FKPhotoSizeSmall240 fromPhotoDictionary:photoDictionary];
+                        NSURL *url = [[FlickrKit sharedFlickrKit] photoURLForSize:FKPhotoSizeLarge1024 fromPhotoDictionary:photoDictionary];
                         [self.myPhotoURLs addObject:url];
                     }
                 } else {

@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *selectImageButton;
 @property (weak, nonatomic) IBOutlet UIButton *uploadImageButton;
 @property (nonatomic, retain) FKImageUploadNetworkOperation *uploadOp;
+@property (nonatomic, assign) BOOL isUploaded;
 @end
 
 @implementation PBPhotoUploadViewController
@@ -23,11 +24,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = YES;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -39,8 +35,16 @@
 {
     [super viewWillDisappear:animated];
     [self.uploadOp cancel];
-    
-    self.navigationController.navigationBarHidden = YES;
+}
+
+- (void)dealloc
+{
+    [self.uploadOp cancel];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)selectImageButtonPressed:(id)sender
@@ -50,12 +54,12 @@
 
 - (IBAction)uploadImageButtonPressed:(id)sender
 {
-    if (self.uploadingImageView.image == nil) {
+    if (self.uploadingImageView.image == nil || self.isUploaded) {
         return;
     }
     
-    NSDictionary *uploadArgs = @{@"title": @"Test Photo",
-                                 @"description": @"A Test Photo via FlickrKitDemo",
+    NSDictionary *uploadArgs = @{@"title": @"My Photo",
+                                 @"description": @"Photo upload from Photo Briefer",
                                  @"is_public": @"0",
                                  @"is_friend": @"0",
                                  @"is_family": @"0",
@@ -72,14 +76,17 @@
                 }];
                 [alert addAction:cancel];
                 [self presentViewController:alert animated:YES completion:nil];
+                self.isUploaded = NO;
             } else {
-                NSString *msg = [NSString stringWithFormat:@"Upload image ID %@", imageID];
+                NSString *msg = [NSString stringWithFormat:@"Successfully upload image with ID %@", imageID];
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Done" message:msg preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
                     [alert dismissViewControllerAnimated:YES completion:nil];
                 }];
                 [alert addAction:cancel];
                 [self presentViewController:alert animated:YES completion:nil];
+                
+                self.isUploaded = YES;
             }
             [self.uploadOp removeObserver:self forKeyPath:@"uploadProgress" context:NULL];
         });
@@ -106,7 +113,7 @@
 
 - (void)showActionSheet
 {
-    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"Action Sheet" message:@"Using the alert controller" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"Upload your photo" message:@"Please select your choice of photo source" preferredStyle:UIAlertControllerStyleActionSheet];
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self camera];
@@ -149,6 +156,7 @@
     
     if ([info objectForKey:UIImagePickerControllerOriginalImage] != nil) {
         self.uploadingImageView.image = image;
+        self.isUploaded = NO;
     }
     
     [self dismissViewControllerAnimated:YES completion:nil];
