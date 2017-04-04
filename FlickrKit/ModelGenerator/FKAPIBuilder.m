@@ -40,8 +40,6 @@
 		BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:self.outputPath];
 		NSAssert(exists, @"Ouput folder doesn't exist - you need to set this in the code");
 		
-		// We call Flickr to 'reflect' on it's API, so we need an API key.
-        // This is a FlickrKit demo key
 		NSString *apiKey = @"348ea26ca45d5f9d3da7fff4822a7fd1";
 		NSString *secret = @"471cc96b04e60f27";
 		NSAssert(apiKey, @"You need to enter your own API key and secret");

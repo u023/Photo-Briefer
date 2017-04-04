@@ -308,7 +308,7 @@
 {
     NSURL* imageURL = [info objectForKey:UIImagePickerControllerReferenceURL];
     
-    NSDictionary *uploadArgs = @{@"title": @"Test Photo", @"description": @"A Test Photo via FlickrKitDemo", @"is_public": @"0", @"is_friend": @"0", @"is_family": @"0", @"hidden": @"2"};
+    NSDictionary *uploadArgs = @{@"title": @"My Photo", @"description": @"Photo upload from Photo Briefer", @"is_public": @"0", @"is_friend": @"0", @"is_family": @"0", @"hidden": @"2"};
     
     self.progress.progress = 0.0;
     self.uploadOp = [[FlickrKit sharedFlickrKit] uploadAssetURL:imageURL args:uploadArgs completion:^(NSString * _Nullable imageID, NSError * _Nullable error) {
