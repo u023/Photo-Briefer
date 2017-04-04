@@ -192,7 +192,7 @@
                             <constraint firstItem="kel-f3-c1K" firstAttribute="leading" secondItem="NyS-Kk-3wG" secondAttribute="leading" id="wY6-d5-EPA"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My photos" id="6ZL-84-fDP"/>
+                    <tabBarItem key="tabBarItem" title="My photos" image="Pictures48" selectedImage="Pictures48" id="6ZL-84-fDP"/>
                     <connections>
                         <outlet property="imageScrollView" destination="kel-f3-c1K" id="TgY-q7-HEh"/>
                     </connections>
@@ -364,6 +364,7 @@
     </scenes>
     <resources>
         <image name="CameraIcon50x50" width="25" height="18"/>
+        <image name="Pictures48" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="LOt-Hh-sC5"/>
