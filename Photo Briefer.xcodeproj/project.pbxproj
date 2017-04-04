@@ -326,7 +326,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0820;
-				ORGANIZATIONNAME = u023;
+				ORGANIZATIONNAME = phomory;
 				TargetAttributes = {
 					4DC5441E1E56451000F7C8A8 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -665,7 +665,7 @@
 				INFOPLIST_FILE = "Photo Briefer/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.u023.Photo-Briefer";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.phomory.Photo-Briefer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -680,7 +680,7 @@
 				INFOPLIST_FILE = "Photo Briefer/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.u023.Photo-Briefer";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.phomory.Photo-Briefer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -692,7 +692,7 @@
 				DEVELOPMENT_TEAM = 7P8FHBU8VX;
 				INFOPLIST_FILE = "Photo BrieferTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.u023.Photo-BrieferTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.phomory.Photo-BrieferTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Photo Briefer.app/Photo Briefer";
 			};
@@ -705,7 +705,7 @@
 				DEVELOPMENT_TEAM = 7P8FHBU8VX;
 				INFOPLIST_FILE = "Photo BrieferTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.u023.Photo-BrieferTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.phomory.Photo-BrieferTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Photo Briefer.app/Photo Briefer";
 			};
@@ -717,7 +717,7 @@
 				DEVELOPMENT_TEAM = 7P8FHBU8VX;
 				INFOPLIST_FILE = "Photo BrieferUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.u023.Photo-BrieferUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.phomory.Photo-BrieferUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = "Photo Briefer";
 			};
@@ -729,7 +729,7 @@
 				DEVELOPMENT_TEAM = 7P8FHBU8VX;
 				INFOPLIST_FILE = "Photo BrieferUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.u023.Photo-BrieferUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.phomory.Photo-BrieferUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = "Photo Briefer";
 			};
