@@ -156,7 +156,7 @@
                             <constraint firstItem="tzq-kC-sbI" firstAttribute="centerX" secondItem="6dh-A4-0kY" secondAttribute="centerX" id="u1b-za-z14"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Setting" id="3jm-zb-jmf"/>
+                    <tabBarItem key="tabBarItem" title="Setting" image="settingsx32" selectedImage="settingsx32" id="3jm-zb-jmf"/>
                     <navigationItem key="navigationItem" id="bAb-Sa-tLP"/>
                     <connections>
                         <outlet property="authButton" destination="6dh-A4-0kY" id="tX2-Et-7UW"/>
@@ -192,7 +192,7 @@
                             <constraint firstItem="kel-f3-c1K" firstAttribute="leading" secondItem="NyS-Kk-3wG" secondAttribute="leading" id="wY6-d5-EPA"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My photos" image="Pictures48" selectedImage="Pictures48" id="6ZL-84-fDP"/>
+                    <tabBarItem key="tabBarItem" title="My photos" image="film-reelx32" selectedImage="film-reelx32" id="6ZL-84-fDP"/>
                     <connections>
                         <outlet property="imageScrollView" destination="kel-f3-c1K" id="TgY-q7-HEh"/>
                     </connections>
@@ -201,7 +201,7 @@
             </objects>
             <point key="canvasLocation" x="-1322" y="-2008"/>
         </scene>
-        <!--Photos View Controller-->
+        <!--Today's Interest-->
         <scene sceneID="7gP-zr-nuY">
             <objects>
                 <viewController id="mO0-Gr-stK" customClass="PBPhotosViewController" sceneMemberID="viewController">
@@ -225,7 +225,7 @@
                             <constraint firstAttribute="trailing" secondItem="XmO-d7-At6" secondAttribute="trailing" id="s3p-uT-3n3"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="mostRecent" id="rdk-9x-lhH"/>
+                    <tabBarItem key="tabBarItem" title="Today's Interest" image="loupex32" selectedImage="loupex32" id="rdk-9x-lhH"/>
                     <connections>
                         <outlet property="imageScrollView" destination="XmO-d7-At6" id="BWT-o0-kCZ"/>
                     </connections>
@@ -347,7 +347,7 @@
                             <constraint firstItem="w1j-z8-BXK" firstAttribute="leading" secondItem="xX2-t4-h9v" secondAttribute="leading" id="vxu-p3-N1o"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="2" title="Camera" image="CameraIcon50x50" selectedImage="CameraIcon50x50" id="L8K-QI-x3b"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Camera" image="photo-camerax32" selectedImage="photo-camerax32" id="L8K-QI-x3b"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="photoImageView" destination="mMc-cI-e8w" id="lwG-Tb-YpF"/>
@@ -363,8 +363,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CameraIcon50x50" width="25" height="18"/>
-        <image name="Pictures48" width="24" height="24"/>
+        <image name="film-reelx32" width="32" height="32"/>
+        <image name="loupex32" width="32" height="32"/>
+        <image name="photo-camerax32" width="32" height="32"/>
+        <image name="settingsx32" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="LOt-Hh-sC5"/>
